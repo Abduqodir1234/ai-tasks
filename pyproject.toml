@@ -5,6 +5,7 @@ description = "Small LLM experiments: OpenAI, Gemini, Ollama, web scraping and m
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "gradio>=6.30.0",
     "litellm>=1.106.0",
     "openai>=2.54.0",
     "playwright>=1.64.0",
