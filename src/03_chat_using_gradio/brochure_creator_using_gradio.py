@@ -1,12 +1,6 @@
-import sys
-from turtle import mode
-from urllib.parse import urljoin
-
 from dotenv import load_dotenv
-import json
-from openai import OpenAI, responses
 import gradio as gr
-from litellm import api_base, completion
+from litellm import  completion
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 
 load_dotenv(override=True)
