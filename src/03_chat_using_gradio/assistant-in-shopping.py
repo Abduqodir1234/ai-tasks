@@ -596,9 +596,7 @@ def callQwen(prompt: str, history: list[GradioChatHistory], request: gr.Request)
     llmRes = completion(model=qwenModel,messages=messages, api_base=qwenModelApiBase,tools = LLM_TOOLS_FUNCTIONS_DESCRIPTION_TO_QWEN)
 
     # Check tool_calls rather than finish_reason: Ollama can return tool calls with finish_reason 'stop'
-    maxToolRounds = 5
-    while llmRes.choices[0].message.tool_calls and maxToolRounds > 0:
-        maxToolRounds -= 1
+    while llmRes.choices[0].message.tool_calls:
         message = llmRes.choices[0].message
         toolRes = handleToolCall(message)
         messages.append(message)
