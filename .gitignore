@@ -20,3 +20,6 @@ dist/
 
 # Local databases
 *.db
+
+# Vector store (regenerate with ingest.py)
+src/vector_db/
