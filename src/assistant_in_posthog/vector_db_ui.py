@@ -1,9 +1,11 @@
+import html
 import random
 from pathlib import Path
 
 import gradio as gr
 import numpy as np
 import plotly.graph_objects as go
+from chromadb.errors import InternalError
 from sklearn.manifold import TSNE
 
 from constants.assistant_constant import VECTOR_DB_NAME
@@ -58,19 +60,30 @@ def sampleVectors(sampleSize: int, section: str):
 
 def plotVectors(sampleSize: int, section: str, dimensions: str) -> go.Figure:
     """Reduce the sampled vectors with t-SNE and draw them, one trace per section."""
-    vectors, documents, metadatas = sampleVectors(int(sampleSize), section)
+    try:
+        vectors, documents, metadatas = sampleVectors(int(sampleSize), section)
+    except InternalError as e:
+        # Chroma's local db is single-process: while ingest.py writes, this process's
+        # loaded index misses the new ids and get(ids=...) fails with "Error finding id"
+        return go.Figure().update_layout(
+            title=f"Vector db changed while the UI was running ({e}). "
+                  "Wait for ingest.py to finish, then restart vector_db_ui.py"
+        )
     if len(vectors) < 3:
         return go.Figure().update_layout(title="Not enough vectors to plot")
 
     components = 3 if dimensions == "3D" else 2
-    # perplexity must be below the number of samples
-    tsne = TSNE(n_components=components, random_state=42, perplexity=min(30, len(vectors) - 1))
+    # perplexity must be below the number of samples. Cosine, because the db ranks by cosine (see get_vector_db.py)
+    tsne = TSNE(n_components=components, random_state=42, perplexity=min(30, len(vectors) - 1), metric="cosine")
     reduced = tsne.fit_transform(vectors)
 
     sections = [(metadata or {}).get("section", "unknown") for metadata in metadatas]
+    # Escaped because plotly reads hover text as HTML: chunks are Markdown and hold
+    # things like <ph_project_api_key> or <div>, which would vanish or break the label
     hoverTexts = [
-        f"Section: {s}<br>Title: {(m or {}).get('title', '')}<br>Source: {(m or {}).get('source', '')}<br>"
-        f"Text: {d[:150].replace(chr(10), ' ')}..."
+        f"Section: {html.escape(s)}<br>Title: {html.escape((m or {}).get('title', ''))}<br>"
+        f"Source: {html.escape((m or {}).get('source', ''))}<br>"
+        f"Text: {html.escape(d[:150].replace(chr(10), ' '))}..."
         for s, m, d in zip(sections, metadatas, documents)
     ]
 

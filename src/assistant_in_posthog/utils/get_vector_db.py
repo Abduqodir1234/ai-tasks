@@ -21,7 +21,13 @@ class VectorDB:
             with cls._lock:
                 # Check again: another thread may have created it while we waited
                 if cls._instance is None:
-                    cls._instance = Chroma(persist_directory=dbDirectory, embedding_function=embedding)
+                    # Chroma ranks by L2 unless told otherwise. The space is fixed when
+                    # the collection is created, so an existing L2 db needs re-ingesting
+                    cls._instance = Chroma(
+                        persist_directory=dbDirectory,
+                        embedding_function=embedding,
+                        collection_metadata={"hnsw:space": "cosine"},
+                    )
                     cls._dbDirectory = dbDirectory
 
         if dbDirectory != cls._dbDirectory:
