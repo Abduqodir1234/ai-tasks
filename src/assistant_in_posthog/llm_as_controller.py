@@ -7,10 +7,11 @@ from dotenv.main import rewrite
 from langchain_community.tools import tool
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
+from sentence_transformers import CrossEncoder
 
 from tools.retrieve_from_rag import fetch_related_context
 from dtos.llm_dto import GradioChatHistory
-from constants.assistant_constant import EMBEDDING_MODEL_NAME, RELEVANT_CONTEXT_COUNT, TOOL_SYSTEM_PROMPT, VECTOR_DB_NAME, RELEVANT_DOCS_COUNT
+from constants.assistant_constant import EMBEDDING_MODEL_NAME, RERANK_MODEL_NAME, RELEVANT_CONTEXT_COUNT, TOOL_SYSTEM_PROMPT, VECTOR_DB_NAME, RELEVANT_DOCS_COUNT
 from utils.get_vector_db import getDb
 from utils.llm_utils import rerank_context, improve_current_prompt
 from langchain_core.documents import Document
@@ -26,24 +27,18 @@ llm = ChatOllama(
         model="gpt-oss", 
     # model="qwen3:8b", 
     verbose=True, 
-    temperature=0.2,
-    # Ollama defaults to a 4096-token context, which the system prompt, tool schemas,
-    # reasoning and tool results overflow: tool calls get cut off mid-JSON
+    temperature=0.3, 
     num_ctx=32768,
-)
-# temperature 0 so the same question and chunks give the same order;
-# reasoning off so <think> text can't break the JSON
-rerankLlm = ChatOllama(
-    base_url="http://localhost:11434",
-    model="qwen3:8b",
-    temperature=0,
-    reasoning=False,
-    # Up to 3 queries x top_k chunks of ~1000 chars each are sent at once
-    num_ctx=16384,
+    reasoning="low",
+    top_p=0.9,
+    top_k=40,
 )
 
 
 HF_TOKEN = os.environ.get("HF_TOKEN")
+# Cross-encoder scores each chunk against the question on its own, so the order
+# is deterministic and the chunk count isn't limited by an LLM's context
+reranker = CrossEncoder(RERANK_MODEL_NAME, token=HF_TOKEN, max_length=1024)
 # Qwen3-Embedding expects searches to carry its "query" instruction prefix and stored
 # chunks none, so only searches use it and the ingested vectors stay valid
 embedding = HuggingFaceEmbeddings(
@@ -92,7 +87,7 @@ def search_posthog(queries: list[str], question: str, top_k: int = 5) -> tuple[s
                 seen.add(key)
                 results.append(doc)
 
-    ranked_results = rerank_context(question, results, rerankLlm)[:top_k]
+    ranked_results = rerank_context(question, results, reranker)[:top_k]
     text = "\n\n".join(
         f"Title: {doc.metadata.get('title', '')}\nSource: {doc.metadata.get('source', '')}\n{doc.page_content}"
         for doc in ranked_results
@@ -108,7 +103,7 @@ llm = llm.bind_tools(tools)
 
 rewritePromptLlm = ChatOllama(
     base_url="http://localhost:11434",
-    model="qwen3:8b",
+    model="gpt-oss",
     temperature=0,
     reasoning=False,
 )

@@ -5,9 +5,10 @@ from typing import Any, Literal, TypedDict
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
+from sentence_transformers import CrossEncoder
 
 from dtos.llm_dto import GradioChatHistory
-from constants.assistant_constant import EMBEDDING_MODEL_NAME, RELEVANT_CONTEXT_COUNT, SYSTEM_PROMPT, VECTOR_DB_NAME, RELEVANT_DOCS_COUNT
+from constants.assistant_constant import EMBEDDING_MODEL_NAME, RERANK_MODEL_NAME, RELEVANT_CONTEXT_COUNT, SYSTEM_PROMPT, VECTOR_DB_NAME, RELEVANT_DOCS_COUNT
 from utils.get_vector_db import getDb
 from utils.llm_utils import combined_question, rerank_context, improve_current_prompt
 from langchain_core.messages import SystemMessage, HumanMessage, convert_to_messages
@@ -21,14 +22,6 @@ llm = ChatOllama(
     verbose=True, 
     temperature=0.2,
 )
-# temperature 0 so the same question and chunks give the same order;
-# reasoning off so <think> text can't break the JSON
-rerankLlm = ChatOllama(
-    base_url="http://localhost:11434",
-    model="qwen3:1.7b",
-    temperature=0,
-    reasoning=False,
-)
 
 rewritePromptLlm = ChatOllama(
     base_url="http://localhost:11434",
@@ -37,6 +30,7 @@ rewritePromptLlm = ChatOllama(
     reasoning=False,
 )
 HF_TOKEN = os.environ.get("HF_TOKEN")
+reranker = CrossEncoder(RERANK_MODEL_NAME, token=HF_TOKEN, max_length=1024)
 embedding = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL_NAME, model_kwargs={"token": HF_TOKEN})
 
 # Same absolute path as ingest.py; a bare "vector_db" resolves against the
@@ -74,7 +68,7 @@ def main(prompt: str, history: list[GradioChatHistory] = []) -> str | list[str |
     improved_prompt_docs = retriever.invoke(improved_combined_prompt,k = RELEVANT_DOCS_COUNT)
 
     # Rank by the current question only; older questions would pull the order off-topic
-    docs = rerank_context(improvedPrompt, original_prompt_docs+improved_prompt_docs, rerankLlm)[:RELEVANT_CONTEXT_COUNT]
+    docs = rerank_context(improvedPrompt, original_prompt_docs+improved_prompt_docs, reranker)[:RELEVANT_CONTEXT_COUNT]
     print(f"Kept top {len(docs)} documents after rerank")
     relevant_context = "\n\n".join([doc.page_content for doc in docs])
     messages = [SystemMessage(content = SYSTEM_PROMPT.format(context=relevant_context))]

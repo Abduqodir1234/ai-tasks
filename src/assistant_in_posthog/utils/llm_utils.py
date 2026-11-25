@@ -1,23 +1,19 @@
-
-
-
+import re
 from langchain_core.documents import Document
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field
+from sentence_transformers import CrossEncoder
 
 from constants.assistant_constant import (
+    OPTIMIZE_DOC_PART_USER_PROMPT,
     OPTIMIZE_DOC_SYSTEM_PROMPT,
     OPTIMIZE_DOC_USER_PROMPT,
-    RERANK_SYSTEM_PROMPT,
     REWRITE_PROMPT_SYSTEM_PROMPT,
     REWRITE_PROMPT_USER_PROMPT,
 )
 from dtos.llm_dto import GradioChatHistory
-
-
-class RerankResult(BaseModel):
-    ids: list[int] = Field(description="Ids of all chunks, most relevant first")
 
 
 class RewrittenPrompt(BaseModel):
@@ -36,62 +32,23 @@ def combined_question(question: str, history: list[GradioChatHistory] = []) -> s
     return prior + "\n" + question
 
 
-def rerank_context(question: str, docs: list[Document], rerankLlm: BaseChatModel) -> list[Document]:
+def rerank_context(question: str, docs: list[Document], reranker: CrossEncoder) -> list[Document]:
     """
-    Ask rerankLlm to order docs by relevance to question and return them in that order.
-    rerankLlm must support with_structured_output; a small fast model is enough.
-
-    Chunks are numbered 1..n for the LLM (short numbers are easier for a small
-    model than Chroma ids). Its answer is cleaned up: unknown and repeated ids
-    are dropped, and chunks it left out are added after the ranked ones in
-    retriever order, so a short answer can't push the right chunk out of top_k.
-    If the call fails, no valid id is left, or the order is just counting up or
-    down (see isCountingOrder), the original order is returned.
+    Score every doc against question with the cross-encoder reranker and return
+    them most relevant first. If scoring fails, the original order is returned.
     """
     if len(docs) < 2:
         return docs
 
-    chunks = "\n\n".join(f"[{id}]\n{doc.page_content}" for id, doc in enumerate(docs, start=1))
-    messages = [
-        SystemMessage(content=RERANK_SYSTEM_PROMPT),
-        HumanMessage(content=f"Question:\n{question}\n\nChunks:\n{chunks}"),
-    ]
-
     try:
-        result = rerankLlm.with_structured_output(RerankResult).invoke(messages)
-        rankedIds = RerankResult.model_validate(result).ids
+        ranked = reranker.rank(question, [doc.page_content for doc in docs])
     except Exception as e:
         print(f"Rerank failed, keeping retriever order: {type(e).__name__}: {e}")
         return docs
 
-    order = []
-    for id in rankedIds:
-        if 1 <= id <= len(docs) and id not in order:
-            order.append(id)
-    if not order:
-        print("Rerank returned no valid ids, keeping retriever order")
-        return docs
-    if isCountingOrder(order):
-        print(f"Rerank order {order} only counts up or down, keeping retriever order")
-        return docs
-    skipped = [id for id in range(1, len(docs) + 1) if id not in order]
-    print(f"Rerank order: {order}" + (f", skipped (kept last): {skipped}" if skipped else ""))
-
-    return [docs[id - 1] for id in order + skipped]
-
-
-# qwen3:8b sometimes writes the ids out in sequence, e.g. [12, 11, 10, ..., 1],
-# instead of ranking them; that order says nothing about relevance
-MIN_COUNTING_LENGTH = 5
-COUNTING_SHARE = 0.8
-
-
-def isCountingOrder(order: list[int]) -> bool:
-    """True when at least COUNTING_SHARE of neighbouring ids in order differ by exactly 1."""
-    if len(order) < MIN_COUNTING_LENGTH:
-        return False
-    steps = sum(abs(b - a) == 1 for a, b in zip(order, order[1:]))
-    return steps / (len(order) - 1) >= COUNTING_SHARE
+    order = [int(r["corpus_id"]) for r in ranked]
+    print("Rerank order:", [(id + 1, round(float(r["score"]), 3)) for id, r in zip(order, ranked)])
+    return [docs[id] for id in order]
 
 
 def improve_current_prompt(prompt: str, history: list[GradioChatHistory], llm: BaseChatModel) -> str:
@@ -116,23 +73,64 @@ def improve_current_prompt(prompt: str, history: list[GradioChatHistory], llm: B
     return rewritten or prompt
 
 
+# Parts share this many chars so a sentence cut at a part boundary is whole in one of them;
+# the shared text is rewritten in both parts, so it shows up twice in the joined page
+PAGE_PART_OVERLAP = 200
+# Split points for pages longer than maxChars, tried in order: headings first so
+# each part keeps whole sections, then paragraphs, lines and words
+PAGE_PART_SEPARATORS = ["\n# ", "\n## ", "\n### ", "\n#### ", "\n\n", "\n", " ", ""]
+
+
 def optimize_document(content: str, title: str | None, llm: BaseChatModel, maxChars: int = 40000, minRatio: float = 0.5) -> str:
     """
     Ask llm to rewrite a whole page so its chunks are easier to retrieve:
     descriptive headings, sections that make sense alone, schemas turned into
     sentences. See OPTIMIZE_DOC_SYSTEM_PROMPT. llm must support with_structured_output.
 
-    The original content is returned when the page is longer than maxChars
-    (it would not fit the model's context), when the call fails, or when the
-    answer is shorter than minRatio of the original, which means the model
-    summarized or cut the page instead of rewriting it.
+    A page longer than maxChars would not fit the model's context, so it is split
+    into parts of at most maxChars - PAGE_PART_OVERLAP chars that overlap by
+    PAGE_PART_OVERLAP, at headings where possible, and each part is rewritten on its own (see optimize_part), with the page's outline (see
+    page_outline) so the model knows what the whole page is about. Parts after
+    the first lose the repeated "# <title>" heading the model starts every answer with.
     """
-    if not content.strip() or len(content) > maxChars:
+    if not content.strip():
         return content
+    if len(content) <= maxChars:
+        return optimize_part(content, title, llm, minRatio)
 
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=maxChars - PAGE_PART_OVERLAP,
+        chunk_overlap=PAGE_PART_OVERLAP,
+        separators=PAGE_PART_SEPARATORS,
+        keep_separator="start",
+        length_function=len,
+    )
+    parts = splitter.split_text(content)
+    print(f"Page {title!r} is {len(content)} chars, optimizing it in {len(parts)} parts")
+    outline = page_outline(content, title)
+    optimized = []
+    for i, part in enumerate(parts):
+        prompt = OPTIMIZE_DOC_PART_USER_PROMPT.format(
+            title=title or "", outline=outline, content=part, part=i + 1, parts=len(parts)
+        )
+        rewritten = optimize_part(part, title, llm, minRatio, prompt)
+        if i > 0:
+            rewritten = strip_title_heading(rewritten, title)
+        optimized.append(rewritten)
+    return "\n\n".join(optimized)
+
+
+def optimize_part(content: str, title: str | None, llm: BaseChatModel, minRatio: float, prompt: str | None = None) -> str:
+    """
+    Rewrite content, which must fit the model's context, with one llm call.
+    prompt is the user message; without it content is sent as a whole page.
+    The original content is returned when the call fails, or when the answer is
+    shorter than minRatio of the original, which means the model summarized or
+    cut the page instead of rewriting it.
+    """
     messages = [
         SystemMessage(content=OPTIMIZE_DOC_SYSTEM_PROMPT),
-        HumanMessage(content=OPTIMIZE_DOC_USER_PROMPT.format(title=title or "", content=content)),
+        HumanMessage(content=prompt or OPTIMIZE_DOC_USER_PROMPT.format(title=title or "", content=content)),
     ]
     try:
         result = llm.with_structured_output(OptimizedPage).invoke(messages)
@@ -145,3 +143,34 @@ def optimize_document(content: str, title: str | None, llm: BaseChatModel, maxCh
         print(f"Optimize answer for {title!r} too short, keeping original")
         return content
     return optimized.strip()
+
+
+HEADING_PATTERN = re.compile(r"^#{1,4} .+")
+# A page with hundreds of headings (e.g. an API reference) would crowd out the part itself
+MAX_OUTLINE_CHARS = 4000
+
+
+def page_outline(content: str, title: str | None) -> str:
+    """
+    List the title and the #-#### headings of content, indented by level, skipping
+    lines inside ``` code blocks (shell comments start with # too).
+    Cut at MAX_OUTLINE_CHARS.
+    """
+    lines = [title] if title else []
+    inCode = False
+    for line in content.splitlines():
+        if line.lstrip().startswith("```"):
+            inCode = not inCode
+        elif not inCode and HEADING_PATTERN.match(line) and line.lstrip("#").strip() != title:
+            level = len(line) - len(line.lstrip("#"))
+            lines.append("  " * (level - 1) + "- " + line.lstrip("#").strip())
+    outline = "\n".join(lines)
+    return outline if len(outline) <= MAX_OUTLINE_CHARS else outline[:MAX_OUTLINE_CHARS].rsplit("\n", 1)[0] + "\n- ..."
+
+
+def strip_title_heading(content: str, title: str | None) -> str:
+    """Drop a first line that is the "# <title>" heading, so a split page has it only once."""
+    first, _, rest = content.partition("\n")
+    if title and first.strip().lower() == f"# {title}".lower():
+        return rest.lstrip("\n")
+    return content
