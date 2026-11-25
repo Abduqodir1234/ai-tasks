@@ -1,166 +1,1844 @@
 [
   {
-    "question": "Can I work from a WeWork or coworking space and expense it?",
-    "reference_answer": "Yes. Coworking, cafés or WeWork All Access are allowed under the expense policy, and the monthly User Limit covers it. Message Kendal to be added to the company WeWork account.",
+    "question": "What frontend and backend technologies make up PostHog's main product stack?",
+    "reference_answer": "Frontend: React, with Redux + Kea for state management and Ant Design for layout/components. Backend: Django, Rust for high-scale services, PostgreSQL and ClickHouse as databases, Redis and Apache Kafka for task queues/event streaming, and Celery, Temporal and Dagster as task workers.",
     "keywords": [
-      "WeWork All Access",
-      "co-working",
-      "expense policy",
-      "User Limit",
-      "Kendal"
+      "React",
+      "Kea",
+      "Redux",
+      "Ant Design",
+      "Django",
+      "Rust",
+      "PostgreSQL",
+      "ClickHouse",
+      "Kafka",
+      "Redis"
     ],
-    "source": "https://posthog.com/handbook/people/benefits, https://posthog.com/handbook/company/culture",
-    "category": "people-policy"
+    "source": "https://posthog.com/handbook/engineering/stack",
+    "category": "specific-fact"
   },
   {
-    "question": "Was 'Dune' one of the BookHog books, and which book on PostHog's culture inspiration did BookHog read?",
-    "reference_answer": "Yes, Dune is on the BookHog list. BookHog also read 'No Rules Rules', the book that inspired PostHog's context-based expense policy and is listed among the books that influenced the company.",
+    "question": "Which testing tools and CI/CD tooling does PostHog use in its main repo?",
+    "reference_answer": "Frontend E2E tests use Playwright. Backend tests use Pytest and Django's built-in test suite. CI/CD runs on GitHub Actions, containerization uses Docker and Docker Compose, the frontend linter is ESLint, and the backend formatter is Black.",
     "keywords": [
-      "Dune",
-      "No Rules Rules",
-      "expense policy",
-      "influenced"
+      "Playwright",
+      "Pytest",
+      "Django test suite",
+      "GitHub Actions",
+      "Docker",
+      "ESLint",
+      "Black"
     ],
-    "source": "https://posthog.com/handbook/people/bookhog, https://posthog.com/handbook/people/spending-money, https://posthog.com/handbook/story",
-    "category": "multi-hop"
+    "source": "https://posthog.com/handbook/engineering/stack",
+    "category": "specific-fact"
   },
   {
-    "question": "How does PostHog's internal #changelog Slack channel get populated?",
-    "reference_answer": "Agentic workflows scan merged PRs and feature flag changes in the posthog/posthog repo and summarize them into the channel. PRs still behind a feature flag are left out, based on the 'Release status' section of the PR template. The Wizard & Docs team owns the channel. Support team members are expected to join it.",
+    "question": "I need to send a welcome email asynchronously after signup. Should I use Celery, Temporal or Dagster?",
+    "reference_answer": "Celery. It's meant for tiny, low-latency, fire-and-forget background tasks like sending emails. Celery can be unreliable for larger or long-running workflows at PostHog's scale, so new medium- and large-scale jobs should use Temporal or Dagster instead.",
     "keywords": [
-      "agentic workflows",
-      "merged PRs",
-      "feature flag",
-      "Release status",
-      "Wizard & Docs",
-      "Support"
+      "Celery",
+      "low-latency",
+      "fire-and-forget",
+      "email",
+      "Temporal",
+      "Dagster"
     ],
-    "source": "https://posthog.com/handbook/engineering/customer-comms, https://posthog.com/handbook/support/support-team",
-    "category": "multi-hop"
+    "source": "https://posthog.com/handbook/engineering/stack",
+    "category": "scenario"
   },
   {
-    "question": "What core tools does the PostHog AI single-loop agent have, and how do products extend it?",
-    "reference_answer": "Core tools: search, read_data, read_taxonomy and todo_write (the team-structure page also mentions enable_mode). Products extend the agent through dynamically loadable agent modes (e.g. SQL, Analytics, CDP, custom product modes). Capabilities are exposed through the MCP server, which serves PostHog AI, Deep Research, Session Summaries, PostHog Desktop, the Wizard and tools like Claude Code.",
+    "question": "When should a PostHog engineer pick Temporal over Dagster?",
+    "reference_answer": "Temporal is for user-facing, mission-critical workflows with complex failure scenarios, exactly-once guarantees, complex retry policies or long-running workflows. Dagster is for internal data jobs where you need rich data lineage and testing. Scheduled data transformation can be either. Temporal is also far cheaper, so if Temporal can do the job, it almost certainly should.",
     "keywords": [
-      "search",
-      "read_data",
-      "read_taxonomy",
-      "todo_write",
-      "modes",
-      "MCP server",
-      "Deep Research",
-      "Wizard"
+      "mission-critical",
+      "exactly-once",
+      "retry policies",
+      "long-running",
+      "user-facing",
+      "Dagster",
+      "data lineage",
+      "cheaper"
     ],
-    "source": "https://posthog.com/handbook/engineering/ai/architecture, https://posthog.com/handbook/engineering/ai/team-structure",
-    "category": "technical"
-  },
-  {
-    "question": "Per-product growth reviews vs growth sessions: how do they differ?",
-    "reference_answer": "Per-product growth reviews are monthly, PM-led and mostly async reviews of one product's metrics and anomalies. Growth sessions are company-level meetings every four weeks with Raquel, Tim, James and Charles, where hypotheses for long-term monthly revenue growth are brainstormed and prioritized.",
-    "keywords": [
-      "monthly",
-      "per-product",
-      "PM",
-      "asynchronous",
-      "four weeks",
-      "company",
-      "hypotheses",
-      "Tim",
-      "James"
-    ],
-    "source": "https://posthog.com/handbook/product/per-product-growth-reviews, https://posthog.com/handbook/growth/growth-engineering/growth-sessions",
+    "source": "https://posthog.com/handbook/engineering/stack",
     "category": "comparison"
   },
   {
-    "question": "What is PostHog's revenue target for 2026, and what monthly growth rate does it require?",
-    "reference_answer": "$100 million ARR by the end of 2026. The 'future' page says it needs about 7% monthly revenue growth. The finance page says averaging 7.5% MoM hits $100m by end of 2026, and 5% MoM makes PostHog 'default alive' (profitable before running out of capital). A good answer notes the slight 7% vs 7.5% difference.",
+    "question": "How much cheaper is Temporal than Dagster per operation, and what real migration shows this?",
+    "reference_answer": "Dagster charges $0.02–0.04 per credit (1 credit = 1 asset materialization). Temporal charges $0.00005 per action (about 1 activity execution). That's roughly a 300x difference per operation. Moving experiment timeseries recalculation from Dagster to Temporal cut the cost from about $6k/month to about $20/month for the same workload.",
     "keywords": [
-      "$100 million",
-      "2026",
-      "7%",
-      "7.5%",
-      "5%",
-      "default alive"
+      "$0.02-0.04",
+      "credit",
+      "$0.00005",
+      "action",
+      "300x",
+      "experiment timeseries",
+      "$6k/month",
+      "$20/month"
     ],
-    "source": "https://posthog.com/handbook/future, https://posthog.com/handbook/finance",
-    "category": "conflict-resolution"
+    "source": "https://posthog.com/handbook/engineering/stack",
+    "category": "reasoning-calculation"
   },
   {
-    "question": "When should a salesperson reach out to a self-serve customer who signed up without talking to sales?",
-    "reference_answer": "If they think the customer could pay more than $20k a year, they should introduce themselves and offer help. Such customers have often done their own research, so a demo may not be needed and a 30-minute discovery call may be better. Check Vitally first (linked from the 'Vitally account URL' field in Salesforce) for prior contact. Customers who work with sales retain better and cross-sell more.",
+    "question": "Which PostHog workloads currently run on Temporal and which on Dagster?",
+    "reference_answer": "Temporal: batch exports, data warehouse source syncing, AI platform task generation and experiment timeseries recalculation. Dagster: exchange rate tracking, one-off production management commands and web analytics data pre-processing. Celery handles small, fast background tasks like sending email.",
     "keywords": [
-      "$20k",
-      "introduce",
-      "demo",
-      "30-minute",
-      "discovery",
-      "Vitally",
-      "Salesforce",
-      "retain better"
+      "batch exports",
+      "data warehouse",
+      "AI platform task generation",
+      "experiment timeseries",
+      "exchange rate",
+      "management commands",
+      "web analytics"
     ],
-    "source": "https://posthog.com/handbook/growth/sales/product-led-sales",
+    "source": "https://posthog.com/handbook/engineering/stack",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What does the 'products' directory in the PostHog monorepo contain, and who owns its structure?",
+    "reference_answer": "Product-specific code organized as vertical slices. Each product folder has its own backend (a Django app), frontend (React) and optionally shared code, so features can evolve independently. The Developer Experience team owns the product folder structure and the isolation rules between products. If your product doesn't fit the shape, ask in #team-devex before working around it.",
+    "keywords": [
+      "vertical slices",
+      "Django app",
+      "React",
+      "independently",
+      "Developer Experience",
+      "#team-devex"
+    ],
+    "source": "https://posthog.com/handbook/engineering/project-structure",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Which Rust services live in the PostHog monorepo's rust directory?",
+    "reference_answer": "Rust holds the high-performance services, including capture (the event capture endpoint), feature-flags (flag evaluation) and cymbal (error tracking symbolication), plus various workers and utilities. The developing-locally page also lists property-defs-rs, hook services, hogvm, personhog-replica and personhog-router.",
+    "keywords": [
+      "capture",
+      "feature-flags",
+      "cymbal",
+      "symbolication",
+      "property-defs-rs",
+      "hogvm",
+      "personhog"
+    ],
+    "source": "https://posthog.com/handbook/engineering/project-structure, https://posthog.com/handbook/engineering/developing-locally",
+    "category": "multi-hop"
+  },
+  {
+    "question": "Is all code in the PostHog repo MIT licensed?",
+    "reference_answer": "No. The ee directory holds Enterprise edition features under a separate license, not MIT. For 100% FOSS code, use the PostHog/posthog-foss repository.",
+    "keywords": ["ee", "separate license", "not MIT", "posthog-foss"],
+    "source": "https://posthog.com/handbook/engineering/project-structure",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What language is the livestream service written in, and what does it power?",
+    "reference_answer": "Go (Golang). It powers the live events feed in the Activity tab.",
+    "keywords": ["Golang", "live events", "Activity tab"],
+    "source": "https://posthog.com/handbook/engineering/project-structure",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Where does the HogQL parser live, and what language is it written in?",
+    "reference_answer": "The PostHog SQL parser, hogql_parser, is in the common directory and written in C++. common also holds hogvm (the Hog virtual machine) and the shared Tailwind configuration. The HogQL compiler and executor live in posthog/hogql in the Django backend.",
+    "keywords": ["common", "hogql_parser", "C++", "hogvm", "posthog/hogql"],
+    "source": "https://posthog.com/handbook/engineering/project-structure",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What is the nodejs directory responsible for in the PostHog repo?",
+    "reference_answer": "The Node.js service handles event ingestion and processing, runs plugins and data pipelines, and delivers webhooks. The person processing page calls it the ingestion pipeline, formerly the plugin server.",
+    "keywords": [
+      "event ingestion",
+      "plugins",
+      "data pipelines",
+      "webhook",
+      "plugin server"
+    ],
+    "source": "https://posthog.com/handbook/engineering/project-structure, https://posthog.com/handbook/engineering/person-processing",
+    "category": "multi-hop"
+  },
+  {
+    "question": "What are the four main PostHog app components that run during local development?",
+    "reference_answer": "A Celery worker (background tasks), the Django server, Node.js services (event ingestion and apps/plugins) and the React frontend built with Node.js. A growing set of Rust services handles performance-critical work.",
+    "keywords": [
+      "Celery worker",
+      "Django server",
+      "Node.js",
+      "React frontend",
+      "Rust"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Which external services does local PostHog depend on, and what is each used for?",
+    "reference_answer": "ClickHouse (big data: events, persons, analytics queries), Kafka (queuing events for ingestion), SeaweedFS (S3-compatible object storage for session recordings and file exports), PostgreSQL (ordinary data like users, projects and saved insights), Redis (caching and inter-service communication) and Zookeeper (coordinating Kafka and ClickHouse).",
+    "keywords": [
+      "ClickHouse",
+      "Kafka",
+      "SeaweedFS",
+      "PostgreSQL",
+      "Redis",
+      "Zookeeper"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Why does PostHog recommend a hybrid local setup instead of running everything in Docker or everything on the host?",
+    "reference_answer": "External services (ClickHouse, Kafka, Postgres, Redis, etc.) run in Docker via docker compose, and PostHog apps run on the host via hogli start. Running everything in Docker makes syncing code changes much slower, and you need dependencies like formatters and typecheckers on the host anyway. Running everything on the host isn't practical, because setting up Kafka or ClickHouse from scratch is very complex.",
+    "keywords": [
+      "docker compose",
+      "hogli start",
+      "host",
+      "syncing code",
+      "slower",
+      "Kafka",
+      "ClickHouse",
+      "complexities"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "reasoning"
+  },
+  {
+    "question": "Can I develop PostHog on an Intel Mac or on Windows?",
+    "reference_answer": "Not directly. The guide assumes macOS on Apple silicon or Ubuntu 24.04 LTS. Intel Macs aren't supported, but PostHog employees on one can use Coder workspaces (devboxes). Windows isn't supported natively. Windows users can run a Linux VM, ideally the latest Ubuntu LTS Desktop, not Server, because frontend debugging needs a browser that can reach localhost.",
+    "keywords": [
+      "Apple silicon",
+      "Ubuntu",
+      "24.04",
+      "Intel",
+      "not supported",
+      "Coder workspaces",
+      "Windows",
+      "Linux virtual machine"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
     "category": "scenario"
   },
   {
-    "question": "A CSM helped a customer cut their bill by 40%. Do they need to justify the revenue drop?",
-    "reference_answer": "No. CSMs aren't expected to justify revenue declines from cost optimization, because helping customers save money is a core principle (an overpaying customer is a churn risk who hasn't churned yet). They should add context: tag the account 'cost optimizing' in Customer Analytics and post a Slack message, so others can tell a customer we helped from one we're not engaged with. Accounts nobody looked after get a grace quarter.",
+    "question": "Why do PostHog employees develop on macOS instead of Linux?",
+    "reference_answer": "PostHog standardized internally on macOS, partly because of the SOC 2 auditing gains it brings.",
+    "keywords": ["macOS", "standardised", "SOC2"],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Why should I clone the PostHog repo with --filter=blob:none?",
+    "reference_answer": "It downloads the full commit history and tree structure but fetches file contents (blobs) only when needed. Blobs are about 95% of the repo, so the clone is a few hundred MB instead of several GB and finishes much faster, while git log and git diff still work. hogli start keeps a blobless clone healthy by repacking in the background. Run hogli doctor:git yourself, or hogli doctor:git --fix if git fetch fails with 'Could not read <sha>'.",
     "keywords": [
-      "not expected to justify",
-      "save money",
-      "churn risk",
-      "cost optimizing",
-      "tag",
-      "Slack",
-      "grace quarter"
+      "--filter=blob:none",
+      "blobs",
+      "95%",
+      "few hundred MB",
+      "several GB",
+      "history",
+      "hogli doctor:git",
+      "--fix"
     ],
-    "source": "https://posthog.com/handbook/customer-success/cost-optimization",
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "technical"
+  },
+  {
+    "question": "My push to a PostHog repo fails with 'GH013: Commits must have verified signatures'. What do I need to do?",
+    "reference_answer": "An org-wide ruleset rejects unsigned commits in every PostHog repo, so you need commit signing. The signing key must live in your Mac's Secure Enclave. A 1Password signing key doesn't qualify because 1Password syncs it off the Mac. On macOS 26 or later, hogli git:signing-key creates a Secure Enclave signing key, and Secretive works too. It's an SSH key used only for signing (no GPG). Each Mac needs its own key, and it signs without a prompt, even while the screen is locked, so agents can commit.",
+    "keywords": [
+      "GH013",
+      "signing",
+      "Secure Enclave",
+      "1Password",
+      "hogli git:signing-key",
+      "Secretive",
+      "SSH",
+      "no GPG",
+      "each Mac"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
     "category": "scenario"
   },
   {
-    "question": "What is PostHog's current total headcount and annual revenue as of this month?",
-    "reference_answer": "The handbook doesn't give a current headcount or current annual revenue. It mentions a $100M ARR target by end of 2026 and point-in-time figures like '23 countries', but no current totals. The system should say this isn't in the handbook and not guess.",
+    "question": "If I commit from a devbox, which signing key should I keep on GitHub?",
+    "reference_answer": "Keep your previous signing key on GitHub. A devbox signs through your forwarded SSH agent, which can't hold a Secure Enclave key, so it keeps signing with the previous key. If no repository signs with the old key any more, remove it from GitHub so it can't sign verified commits. Already-pushed commits stay verified.",
     "keywords": [
-      "not in the handbook",
-      "$100M target",
-      "no current figure"
+      "devbox",
+      "previous signing key",
+      "forwarded SSH agent",
+      "Secure Enclave",
+      "remove",
+      "stay verified"
     ],
-    "source": "https://posthog.com/handbook/future, https://posthog.com/handbook/company/grown-ups",
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "technical"
+  },
+  {
+    "question": "What are the steps to get PostHog running locally with Flox?",
+    "reference_answer": "After cloning the repo and installing OrbStack, install Flox (on a PostHog-managed Mac through Fleet Desktop > My device > Self-service, otherwise Homebrew, version 1.19.1 or newer). Run flox activate from the repo root, which can be auto-activated with direnv and sets up dependencies under .flox/. Then run hogli start. It cleans up orphaned processes and launches Docker infrastructure plus all PostHog processes via phrocs. The app is at http://localhost:8010.",
+    "keywords": [
+      "OrbStack",
+      "Flox",
+      "Fleet",
+      "1.19.1",
+      "flox activate",
+      "direnv",
+      "hogli start",
+      "phrocs",
+      "localhost:8010"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "How much memory and CPU should I give OrbStack for PostHog development?",
+    "reference_answer": "At least 4 GB RAM (8 GB recommended) and at least 4 CPU cores (400%). 'Exit Code 137' or out-of-memory errors mean the containers don't have enough resources.",
+    "keywords": [
+      "4 GB",
+      "8 GB",
+      "4 CPU cores",
+      "400%",
+      "Exit Code 137",
+      "out-of-memory"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "specific-fact"
+  },
+  {
+    "question": "hogli start shows connection errors to db, kafka or clickhouse. What should I check?",
+    "reference_answer": "Make sure /etc/hosts has: 127.0.0.1 db redis7 kafka clickhouse clickhouse-coordinator objectstorage seaweedfs temporal. Also check that Docker/OrbStack is actually running. 'Error while fetching server API version: 500' means Docker isn't running.",
+    "keywords": [
+      "/etc/hosts",
+      "127.0.0.1",
+      "kafka",
+      "clickhouse",
+      "objectstorage",
+      "Docker running",
+      "500 Server Error"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "By default, which services does hogli start run, and how do I change them?",
+    "reference_answer": "By default it runs a minimal set of services, enough for product analytics. Run hogli dev:setup to choose intents based on the products you're working on. Your choices are saved and used automatically on later starts.",
+    "keywords": [
+      "minimal",
+      "product analytics",
+      "hogli dev:setup",
+      "intents",
+      "saved"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "Which env files does hogli start load, and which one wins if they conflict?",
+    "reference_answer": "Three files: .env.services (committed; how to reach local services like Postgres, Redis, Kafka, ClickHouse, shared with hobby deployments and Docker containers), .env.development (committed; dev-mode knobs like DEBUG, OpenTelemetry, DuckLake and ports) and .env.local (gitignored; your overrides and secrets, copied from .env.local.example). Precedence, highest first: shell env > .env.local > .env.development > .env.services.",
+    "keywords": [
+      ".env.services",
+      ".env.development",
+      ".env.local",
+      "gitignored",
+      "precedence",
+      "shell env"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "technical"
+  },
+  {
+    "question": "How do PostHog employees get OpenAI and Anthropic API keys for running AI features locally without pasting secrets?",
+    "reference_answer": "Copy .env.local.example to .env.local and uncomment the op:// lines you need. When bin/start sees an op:// reference in .env.local, it re-runs itself under 'op run --env-file=.env.local', resolving secrets from 1Password. If the op CLI isn't installed, op:// lines are skipped, not passed through as literal strings, and services needing those keys fail with their own 'missing key' errors.",
+    "keywords": [
+      "op://",
+      ".env.local",
+      "1Password",
+      "op run",
+      "bin/start",
+      "skipped",
+      "missing key"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "How do I run the PostHog dev stack in the background, for example in an agent session or CI?",
+    "reference_answer": "Use detached mode: hogli up -d (hogli start -d is equivalent). It starts all services in the background and returns once the IPC socket is bound. hogli wait blocks until services are ready, and hogli down (or hogli stop) stops the stack. hogli docker:services:down stops the compose containers, which keep running after hogli down and are shared across worktrees. hogli docker:services:remove also wipes all docker volumes.",
+    "keywords": [
+      "hogli up -d",
+      "detached",
+      "IPC socket",
+      "hogli wait",
+      "hogli down",
+      "docker:services:down",
+      "docker:services:remove",
+      "volumes"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "After a July 2026 update my local ClickHouse looks empty. Why, and how is it fixed?",
+    "reference_answer": "In July 2026 ClickHouse and ZooKeeper moved to named docker volumes (clickhouse-data, zookeeper-data). Data previously lived in anonymous volumes, which container recreation discards. hogli start runs hogli doctor:migrate-volumes first, which moves old anonymous volumes into the new named ones when the mapping is unambiguous. If it prints a warning instead, run hogli migrations:run to recreate the schema, or hogli dev:reset for a full wipe plus demo data. If you restore data manually, ClickHouse and ZooKeeper state must move together, or replicated tables break with 'replica already exists'.",
+    "keywords": [
+      "July 2026",
+      "named volumes",
+      "anonymous volumes",
+      "hogli doctor:migrate-volumes",
+      "hogli migrations:run",
+      "hogli dev:reset",
+      "replica already exists",
+      "together"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "My local ClickHouse container stopped by itself. Is something broken?",
+    "reference_answer": "No. hogli watch, a background housekeeper started by Flox activation (one per machine), stops local ClickHouse after 30 minutes with no queries, no connected clients and no hogli start stack running. A test that needs ClickHouse starts it again in a few seconds. Start it by hand with hogli watch --ensure clickhouse. POSTHOG_CLICKHOUSE_IDLE_STOP_MINUTES sets the idle window (0 turns the stop off), and POSTHOG_WATCH=0 turns off the whole watcher.",
+    "keywords": [
+      "hogli watch",
+      "30 minutes",
+      "no queries",
+      "hogli watch --ensure clickhouse",
+      "POSTHOG_CLICKHOUSE_IDLE_STOP_MINUTES",
+      "POSTHOG_WATCH=0"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "multi-hop"
+  },
+  {
+    "question": "Is the 'get_mempolicy: Operation not permitted' ClickHouse log message a problem?",
+    "reference_answer": "No, it's harmless and can be ignored. To check ClickHouse started, run docker exec -it posthog-clickhouse-1 bash and then clickhouse-client --query \"SELECT 1\".",
+    "keywords": [
+      "get_mempolicy",
+      "harmless",
+      "docker exec",
+      "clickhouse-client",
+      "SELECT 1"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "Kafka keeps crashing on my Apple Silicon Mac during local development. What's going on?",
+    "reference_answer": "Kafka is an x86 container and may segfault randomly on ARM machines. Just restart it when it happens. The manual setup guide notes Kafka is the only x86 container used.",
+    "keywords": ["x86", "segfault", "ARM", "restart", "only x86 container"],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "Events aren't being ingested into my local PostHog. What should I try?",
+    "reference_answer": "It's usually because the Node.js service isn't running or didn't start. If it fails silently, reset node_modules: rm -rf node_modules, pnpm store prune, pnpm install --force. If nodejs won't start, try cd nodejs && pnpm rebuild && pnpm i.",
+    "keywords": [
+      "nodejs",
+      "not running",
+      "rm -rf node_modules",
+      "pnpm store prune",
+      "pnpm install --force",
+      "pnpm rebuild"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "I get 'fe_sendauth: no password supplied' during migrations. How do I fix it?",
+    "reference_answer": "Set DATABASE_URL=postgres://posthog:posthog@localhost:5432/posthog and make sure the containers are running.",
+    "keywords": [
+      "fe_sendauth",
+      "DATABASE_URL",
+      "postgres://posthog:posthog@localhost:5432/posthog",
+      "containers"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "How do I run only one backend test function, and see the ClickHouse queries it runs?",
+    "reference_answer": "Run hogli test posthog/test/test_example.py -k test_something, and add --log-cli-level=DEBUG to see debug logs such as ClickHouse queries. hogli test --changed runs tests for all files changed on the branch. Backend tests need Postgres. The test ClickHouse database is only created when a test first uses ClickHouse.",
+    "keywords": [
+      "hogli test",
+      "-k",
+      "--log-cli-level=DEBUG",
+      "ClickHouse queries",
+      "hogli test --changed",
+      "Postgres"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "How do I run Playwright end-to-end tests locally?",
+    "reference_answer": "Run hogli test:e2e, which wraps bin/e2e-test-runner. It spins up a test PostHog instance and opens the Playwright interface, where you pick tests to run manually. You need uv installed. Tests live in playwright/e2e.",
+    "keywords": [
+      "hogli test:e2e",
+      "bin/e2e-test-runner",
+      "Playwright interface",
+      "uv",
+      "e2e"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/project-structure",
+    "category": "procedural"
+  },
+  {
+    "question": "How do I create a Django migration, and what must I change when adding an index or constraint?",
+    "reference_answer": "Run DEBUG=1 ./manage.py makemigrations. Generated migrations usually don't need changes, but for a new index or constraint you must make it non-blocking so it doesn't lock the table, using the CONCURRENTLY keyword. See the Safe Django Migrations guide for details.",
+    "keywords": [
+      "DEBUG=1",
+      "makemigrations",
+      "index",
+      "constraint",
+      "lock",
+      "CONCURRENTLY",
+      "Safe Django Migrations"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "My PR has a migration merge conflict with master. How do I resolve it?",
+    "reference_answer": "Migrations must be applied linearly, so conflicts are common. PostHog uses django-linear-migrations: run python manage.py rebase_migration <conflicted Django app> to rebase your migration onto the latest one.",
+    "keywords": ["linearly", "django-linear-migrations", "rebase_migration"],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "How do feature flags work in a local PostHog instance, and how do I get all production flags locally?",
+    "reference_answer": "With DEBUG=1, SELF_CAPTURE is on, so analytics in your local instance is about that instance itself (the current project). Create a flag with the key you need at localhost:8010/feature_flags/new and release it. To get all flags at once, run DEBUG=1 python3 manage.py sync_feature_flags. They're added to every project, fully rolled out, and flags ending in _EXPERIMENT become multivariate with control and test variants. Backend flags use the dev API key from manage.py setup_local_api_key (override with POSTHOG_PERSONAL_API_KEY).",
+    "keywords": [
+      "DEBUG=1",
+      "SELF_CAPTURE",
+      "current project",
+      "sync_feature_flags",
+      "fully rolled out",
+      "_EXPERIMENT",
+      "control",
+      "test",
+      "setup_local_api_key"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "Can I run two PostHog instances at the same time in different Flox worktrees?",
+    "reference_answer": "No. Only one PostHog instance (hogli start) can run at a time, because they all use the same ports. The workflow is about stopping one instance quickly (Ctrl+C) and starting another in a different worktree.",
+    "keywords": ["only one", "same ports", "stop", "Ctrl+C", "switch"],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "specific-fact"
+  },
+  {
+    "question": "I only want to edit and commit in a git worktree, not run the app. Do I need the full Flox worktree setup?",
+    "reference_answer": "No. A plain git worktree add <path> <branch> is enough. Pre-commit hooks (lint-staged, hogli, ruff, ty) work out of the box by borrowing the main clone's node_modules and Python venv, as long as pnpm-lock.yaml and uv.lock match. The borrow only lasts for one hook process, so editors, typecheck and tests need flox activate first. Use phw only when you need to run the app in that worktree.",
+    "keywords": [
+      "git worktree add",
+      "pre-commit hooks",
+      "borrow",
+      "node_modules",
+      "venv",
+      "lockfile",
+      "flox activate",
+      "phw"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "scenario"
+  },
+  {
+    "question": "What's the catch with borrowed tooling in a light worktree?",
+    "reference_answer": "Borrowed tooling runs the main clone's copy of first-party code. hogli and @posthog/* resolve to the main clone, not your branch, because editable installs and workspace links point at whichever clone ran the install. Run flox activate in the worktree before changing hogli or those packages. If a lockfile differs, the hooks tell you what to install.",
+    "keywords": [
+      "main clone",
+      "first-party code",
+      "hogli",
+      "@posthog/*",
+      "editable installs",
+      "workspace links",
+      "flox activate"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "technical"
+  },
+  {
+    "question": "What does each phw command do?",
+    "reference_answer": "phw create <branch> [base] creates a new branch and worktree (base defaults to master). phw checkout <branch> creates a worktree for an existing branch. phw switch <branch> switches to an existing worktree. phw pr <number> checks out a PR into a worktree. phw remove <branch> removes a worktree. phw list lists all worktrees. Each one moves you into the worktree with Flox activated, ready for hogli start.",
+    "keywords": [
+      "phw create",
+      "phw checkout",
+      "phw switch",
+      "phw pr",
+      "phw remove",
+      "phw list",
+      "master"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "procedural"
+  },
+  {
+    "question": "Where are Flox worktrees created by default, and how do I change the location?",
+    "reference_answer": "By default in ~/.worktrees/posthog/. Set POSTHOG_WORKTREE_BASE in your shell profile (e.g. export POSTHOG_WORKTREE_BASE=\"$HOME/code/worktrees\") to change it. phw list and phw remove still work on worktrees in old locations, because they use Git's native tracking (git worktree list) instead of guessing paths.",
+    "keywords": [
+      "~/.worktrees/posthog/",
+      "POSTHOG_WORKTREE_BASE",
+      "git worktree list",
+      "old location"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What tools do I need installed before using the Flox multi-instance workflow?",
+    "reference_answer": "Flox, Git 2.5+ (worktree support), the GitHub CLI (gh) for PR checkout, jq for parsing PR JSON, and direnv (recommended). You should already be able to run hogli start from the developing-locally setup.",
+    "keywords": ["Flox", "Git 2.5", "gh", "jq", "direnv", "hogli start"],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How does phw create get from a command to a ready environment?",
+    "reference_answer": "phw create makes the worktree, copies .envrc and changes into the worktree. direnv sees .envrc and activates Flox, which runs uv sync, and then you're ready to code. Each worktree gets its own .flox/env/manifest.toml and Python venv, while uv's cache shares dependencies efficiently.",
+    "keywords": [
+      "worktree",
+      ".envrc",
+      "direnv",
+      "Flox",
+      "uv sync",
+      "manifest.toml",
+      "venv",
+      "caching"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "technical"
+  },
+  {
+    "question": "What happens if I switch to another worktree while already inside a Flox environment?",
+    "reference_answer": "You get an interactive prompt warning that you're about to activate a Flox environment while already in one for another path, asking 'Continue with nested activation? (y/N)'. You can press Enter to skip nesting, or run 'exit' first to leave the current environment.",
+    "keywords": [
+      "interactive prompt",
+      "nested activation",
+      "y/N",
+      "exit",
+      "Enter"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "Does PostHog automatically clean up old worktrees? Will it delete my unpushed work?",
+    "reference_answer": "Yes, once a day in the background through hogli watch: --mode deps,build for worktrees idle 7 days and --mode full for worktrees idle 14 days. It skips worktrees with uncommitted or unpushed work and keeps every branch. Squash-merged commits don't count as unpushed. Set POSTHOG_WORKTREES_AUTOCLEAN=0 to turn it off. Output goes to ~/.cache/posthog/watch.log.",
+    "keywords": [
+      "daily",
+      "hogli watch",
+      "7 days",
+      "14 days",
+      "uncommitted",
+      "unpushed",
+      "keeps every branch",
+      "POSTHOG_WORKTREES_AUTOCLEAN=0",
+      "watch.log"
+    ],
+    "source": "https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "scenario"
+  },
+  {
+    "question": "Should I follow the manual development setup guide for PostHog?",
+    "reference_answer": "Generally no. The manual setup page says it's deprecated and probably out of date, and recommends the Flox-based instant setup. Developing-locally only points to it if you need to set up without Flox.",
+    "keywords": ["deprecated", "not up to date", "Flox", "without Flox"],
+    "source": "https://posthog.com/handbook/engineering/manual-dev-setup, https://posthog.com/handbook/engineering/developing-locally",
+    "category": "disambiguation"
+  },
+  {
+    "question": "Why does the manual setup still require installing Postgres locally if Postgres runs in Docker?",
+    "reference_answer": "You need a local copy of Postgres (version 11+) for its CLI tools and development libraries/headers, which pip needs to install psycopg2. On macOS, brew install postgresql, but don't start the server. On Debian, install only the client and drivers (postgresql-client, postgresql-contrib, libpq-dev). A running local server conflicts with the Docker Postgres on port 5432.",
+    "keywords": [
+      "CLI tools",
+      "headers",
+      "psycopg2",
+      "version 11",
+      "do not start",
+      "postgresql-client",
+      "libpq-dev",
+      "5432"
+    ],
+    "source": "https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "technical"
+  },
+  {
+    "question": "In the manual setup, how do I install pnpm, and what changed with newer Node.js versions?",
+    "reference_answer": "Run npm install -g corepack@0.36.0 && corepack enable. Node.js 25 and later no longer bundle corepack. Corepack activates the pnpm version pinned in the root package.json's packageManager field. Install the Node version from .nvmrc with nvm install / nvm use first.",
+    "keywords": [
+      "corepack@0.36.0",
+      "corepack enable",
+      "Node.js 25",
+      "no longer bundle",
+      "packageManager",
+      ".nvmrc",
+      "nvm"
+    ],
+    "source": "https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "procedural"
+  },
+  {
+    "question": "How do I regenerate Kea types for just one logic file?",
+    "reference_answer": "Run pnpm --filter=@posthog/frontend typegen:file <path-to-logic-file>. The path can be absolute, repo-relative (frontend/src/scenes/foo/fooLogic.ts) or frontend-relative (src/scenes/foo/fooLogic.ts). For all logics, run pnpm --filter=@posthog/frontend typegen:write. A single-file run may report missing ambient declarations (e.g. .scss), so check with typescript:check.",
+    "keywords": [
+      "typegen:file",
+      "typegen:write",
+      "Kea",
+      "repo-relative",
+      "frontend-relative",
+      "typescript:check"
+    ],
+    "source": "https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "procedural"
+  },
+  {
+    "question": "What should I do if Kea typegen gets stuck in a loop the first time?",
+    "reference_answer": "Cancel it with Ctrl+C, run git reset --hard, and try again. You may need to discard changes once more after the second round finishes.",
+    "keywords": ["Ctrl+C", "git reset --hard", "again", "discard changes"],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "Why can't a pull request from a fork be merged into PostHog/posthog as-is?",
+    "reference_answer": "Backend CI runs on Depot CI, and its 'Backend CI on Depot / Test results' check is required on master. Depot CI never runs a fork's code, so a fork PR gets no backend run and that check stays pending. After review, a PostHog engineer re-creates the change on an in-repo branch, which gets a Depot run and the required check.",
+    "keywords": [
+      "Depot CI",
+      "Backend CI on Depot / Test results",
+      "required",
+      "never runs a fork's code",
+      "pending",
+      "re-creates",
+      "in-repo branch"
+    ],
+    "source": "https://posthog.com/handbook/engineering/fork-pull-requests",
+    "category": "technical"
+  },
+  {
+    "question": "Why must PostHog engineers never push a fork's head to a branch inside the repo before review?",
+    "reference_answer": "An in-repo branch is trusted: every secret-gated step runs, with the fork's code in control of the job. So the fork PR is reviewed as it is first, then re-created in-repo (the recreating-fork-prs skill has the steps).",
+    "keywords": [
+      "never push",
+      "trusted",
+      "secret-gated",
+      "fork's code in control",
+      "review",
+      "re-create",
+      "recreating-fork-prs"
+    ],
+    "source": "https://posthog.com/handbook/engineering/fork-pull-requests",
+    "category": "security"
+  },
+  {
+    "question": "Does a fork contributor lose credit when their PR is re-created in-repo?",
+    "reference_answer": "No, as long as their commits keep them as author. The merge queue squash-merges and GitHub adds a Co-authored-by line for each commit author, which counts on their profile if the email is linked to their account. When the re-created PR merges, a bot comments on the fork PR with a link and closes it.",
+    "keywords": [
+      "credit",
+      "author",
+      "squash-merges",
+      "Co-authored-by",
+      "email",
+      "bot",
+      "closes"
+    ],
+    "source": "https://posthog.com/handbook/engineering/fork-pull-requests",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How does visual regression testing work for fork PRs?",
+    "reference_answer": "Visual Review needs a secret, so fork PRs don't get a Visual Review run. Each Storybook shard compares screenshots against frontend/snapshots.yml offline instead. This fallback only accepts an exact pixel match and doesn't know Visual Review's tolerated hashes or quarantine, so a flaky story can fail it, and a changed snapshot fails 'Visual regression tests pass'.",
+    "keywords": [
+      "Visual Review",
+      "secret",
+      "Storybook",
+      "snapshots.yml",
+      "offline",
+      "exact pixel match",
+      "flaky",
+      "Visual regression tests pass"
+    ],
+    "source": "https://posthog.com/handbook/engineering/fork-pull-requests",
+    "category": "technical"
+  },
+  {
+    "question": "What are the two ways to set up HTTPS for local PostHog development, and which is easier?",
+    "reference_answer": "ngrok, or NGINX with a local certificate. ngrok is the easiest. Local HTTPS helps with hard-to-reproduce issues like cross-domain cookies.",
+    "keywords": [
+      "ngrok",
+      "NGINX",
+      "local certificate",
+      "easiest",
+      "cross domain cookies"
+    ],
+    "source": "https://posthog.com/handbook/engineering/setup-ssl-locally",
+    "category": "comparison"
+  },
+  {
+    "question": "When setting up local HTTPS with ngrok, which ports do the tunnels point to, and which URL goes into JS_URL?",
+    "reference_answer": "Two tunnels in the ngrok config: django on port 8000 and webpack on port 8234. Start them with ngrok start --all. Use the HTTPS URL for the 8234 tunnel as JS_URL for both webpack (with WEBPACK_HOT_RELOAD_HOST=0.0.0.0 and LOCAL_HTTPS=1, then pnpm start) and Django (DEBUG=1, LOCAL_HTTPS=1, python manage.py runserver). Then open the HTTPS URL for the port 8000 tunnel.",
+    "keywords": [
+      "8000",
+      "8234",
+      "ngrok start --all",
+      "JS_URL",
+      "LOCAL_HTTPS=1",
+      "WEBPACK_HOT_RELOAD_HOST",
+      "runserver"
+    ],
+    "source": "https://posthog.com/handbook/engineering/setup-ssl-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "Where is the ngrok config file on macOS, and what extra step is needed to test the Toolbar over ngrok?",
+    "reference_answer": "Run ngrok config check --log=stdout to find it. On macOS it's ~/Library/Application Support/ngrok/ngrok.yml (the old ~/.ngrok2/ngrok.yml is deprecated). For the Toolbar, add the ngrok URLs to the permitted domains on Project Settings. Network requests through ngrok can be slow.",
+    "keywords": [
+      "ngrok config check",
+      "~/Library/Application Support/ngrok/ngrok.yml",
+      "~/.ngrok2",
+      "deprecated",
+      "Toolbar",
+      "Project Settings",
+      "slow"
+    ],
+    "source": "https://posthog.com/handbook/engineering/setup-ssl-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "For the NGINX local HTTPS option, what hostname is used and how is the certificate trusted?",
+    "reference_answer": "The hostname is secure.posthog.dev. Create a self-signed RSA-4096 cert valid 3650 days with openssl (CN and SAN secure.posthog.dev), trust it for Chrome/Safari with 'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain localhost.crt', and map 127.0.0.1 secure.posthog.dev in /etc/hosts. NGINX listens on 443, proxies to 127.0.0.1:8000 and sends /static/ to 127.0.0.1:8234. Update openssl first if 'openssl version' shows LibreSSL.",
+    "keywords": [
+      "secure.posthog.dev",
+      "openssl",
+      "3650",
+      "add-trusted-cert",
+      "System.keychain",
+      "/etc/hosts",
+      "443",
+      "8000",
+      "8234",
+      "LibreSSL"
+    ],
+    "source": "https://posthog.com/handbook/engineering/setup-ssl-locally",
+    "category": "procedural"
+  },
+  {
+    "question": "What are PostHog's two type generation systems, and what is the source of truth for each?",
+    "reference_answer": "Backend to frontend: Django serializers are the source of truth, and Orval generates TypeScript types, API client functions and Zod schemas for API responses. Frontend to backend: TypeScript frontend/src/queries/schema.ts is the source of truth, generating Pydantic posthog/schema.py for query types (HogQL, filters, insights) and some legacy types. They're independent systems and shouldn't be confused.",
+    "keywords": [
+      "Django serializers",
+      "Orval",
+      "TypeScript",
+      "Zod",
+      "schema.ts",
+      "Pydantic",
+      "schema.py",
+      "independent"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "comparison"
+  },
+  {
+    "question": "Can I edit the files in products/<product>/frontend/generated/?",
+    "reference_answer": "No. api.schemas.ts, api.ts and api.zod.ts in generated/ directories (including frontend/src/generated/core/) are overwritten on regeneration, so never edit them. Handwritten types go in frontend/src/types/. Don't manually redefine backend response types in frontend code.",
+    "keywords": [
+      "never edit",
+      "generated",
+      "overwritten",
+      "api.schemas.ts",
+      "api.zod.ts",
+      "frontend/src/types/",
+      "redefine"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What does the 'Api' suffix on a TypeScript type mean in the PostHog codebase?",
+    "reference_answer": "Generated schema types end in Api (e.g. TaskApi, SurveyApi, DashboardApi), so if you see Api, it came from the backend. Handwritten types never use the suffix, which prevents name collisions between generated and manual types. Operation response types follow Orval naming, like tasksListResponse200.",
+    "keywords": [
+      "Api suffix",
+      "generated",
+      "TaskApi",
+      "backend",
+      "handwritten",
+      "collisions",
+      "tasksListResponse200"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Which Zod schemas are generated from the OpenAPI spec, and why only those?",
+    "reference_answer": "Only Body schemas, named <Operation>Body (e.g. VisualReviewReposCreateBody). Response schemas, path params, query params and headers are left out, because the main use is validating user input before API calls. All exports are marked /* @__PURE__ */ so unused schemas are tree-shaken.",
+    "keywords": [
+      "Body",
+      "<Operation>Body",
+      "response schemas excluded",
+      "validating user input",
+      "@__PURE__",
+      "tree-shaken"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "technical"
+  },
+  {
+    "question": "I changed a Django serializer. How do I update the frontend types, and what happens if I forget?",
+    "reference_answer": "Run hogli build (detects changes) or hogli build:openapi, then commit the regenerated files. CI fails if generated types are stale. The same applies after changing viewsets or @extend_schema decorators.",
+    "keywords": [
+      "hogli build",
+      "hogli build:openapi",
+      "commit",
+      "CI will fail",
+      "stale",
+      "viewsets",
+      "@extend_schema"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "procedural"
+  },
+  {
+    "question": "What are the steps to get generated API types for a new product?",
+    "reference_answer": "1) Make sure products/your_product/frontend/ exists. 2) Put your ViewSet in products/your_product/backend/. 3) Run hogli build:openapi. 4) Types appear in products/your_product/frontend/generated/. ViewSets there are auto-tagged by module path, so manual @extend_schema(tags=[...]) isn't needed. If types don't appear, check both directories exist.",
+    "keywords": [
+      "products/your_product/frontend/",
+      "ViewSet",
+      "backend",
+      "hogli build:openapi",
+      "generated",
+      "automatically tagged",
+      "module path"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "procedural"
+  },
+  {
+    "question": "How should query parameters be documented and validated on a PostHog API endpoint?",
+    "reference_answer": "Use the @validated_request decorator (a work-in-progress pattern) with a query_serializer and responses. It validates inputs and documents the endpoint for OpenAPI. Read values from request.validated_query_data, not by parsing request.query_params manually. For a list view that keeps a django-filter FilterSet but filters in a service, use filterset_openapi_parameters and validate_filterset from posthog/api/filterset_helpers.py instead of repeating OpenApiParameter by hand.",
+    "keywords": [
+      "@validated_request",
+      "query_serializer",
+      "validated_query_data",
+      "query_params",
+      "filterset_openapi_parameters",
+      "validate_filterset",
+      "OpenApiParameter"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "technical"
+  },
+  {
+    "question": "The frontend needs the list of allowed values for an API field. Should I write a side generator script?",
+    "reference_answer": "No. Use the OpenAPI flow: type the serializer field (e.g. as a ChoiceField), run hogli build:openapi, and Orval emits a *EnumApi const. Read it with Object.values(SomethingEnumApi) and use SomethingEnumApi as the type. Side generators each need their own hogli step, CI filters, formatter exclusions and drift check, and they multiply. The field must be on an endpoint in the schema (not @extend_schema(exclude=True)).",
+    "keywords": [
+      "side generator",
+      "OpenAPI flow",
+      "ChoiceField",
+      "hogli build:openapi",
+      "EnumApi",
+      "Object.values",
+      "exclude=True"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "scenario"
+  },
+  {
+    "question": "How are generated files that no endpoint serves (like the task model catalog) produced?",
+    "reference_answer": "Through the projection registry. Write a renderer module whose render() returns each output's full text keyed by repo-relative path, add an entry to PROJECTIONS in tools/hogli-commands/hogli_commands/projections.py, then run hogli build:projections and commit the outputs. CI runs hogli build:projections --check. A test (test_generated_files_are_registered.py) fails PRs that add unregistered *.generated.* files or generated/ directories. Ask #team-devex before adding a projection.",
+    "keywords": [
+      "projection registry",
+      "render()",
+      "PROJECTIONS",
+      "projections.py",
+      "hogli build:projections",
+      "--check",
+      "test_generated_files_are_registered",
+      "#team-devex"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "technical"
+  },
+  {
+    "question": "Why does PostHog commit generated type files to the repo?",
+    "reference_answer": "It makes type changes visible in PRs, lets CI catch drift, and means frontend builds don't need Django running. Types also aren't deduplicated across products, so changing one product's serializer can't affect another product's types.",
+    "keywords": [
+      "visible in PRs",
+      "CI catch drift",
+      "Django running",
+      "no deduplication",
+      "isolated"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "reasoning"
+  },
+  {
+    "question": "How are query types like TrendsQuery generated into Python?",
+    "reference_answer": "Source: frontend/src/queries/schema.ts (TypeScript). Intermediate: frontend/src/queries/schema.json (JSON Schema). Output: posthog/schema.py (Pydantic). Run hogli build or hogli build:schema, which runs build:schema-json (TS to JSON Schema) and then build:schema-python (JSON Schema to Pydantic).",
+    "keywords": [
+      "schema.ts",
+      "schema.json",
+      "schema.py",
+      "Pydantic",
+      "hogli build:schema",
+      "build:schema-json",
+      "build:schema-python"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "procedural"
+  },
+  {
+    "question": "Should I add a type to schema.ts just because I need it in Python backend code?",
+    "reference_answer": "No. Only add to schema.ts types sent from frontend to backend as queries/filters, that need backend validation, or that are part of HogQL/insight definitions. Not frontend-only UI types, and not types just needed in Python. For backend-only types, define Pydantic models in your product (e.g. domain_types.py). For backend types needed in the frontend, use a serializer or Pydantic response model with the backend-to-frontend flow.",
+    "keywords": [
+      "no",
+      "query/filter",
+      "validation",
+      "HogQL",
+      "frontend UI",
+      "domain_types.py",
+      "Pydantic",
+      "serializer"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "scenario"
+  },
+  {
+    "question": "How can engineers help with PostHog's migration from manual API types to generated ones?",
+    "reference_answer": "Find manual types in frontend/src/types/ (e.g. Dashboard, Survey, FeatureFlag) that duplicate generated ones like DashboardApi or SurveyApi. Replace api.get<ManualType>(...) calls with generated functions and types. When touching code, migrate files that use manual types for API responses, add adapter functions where the UI needs a different shape, and don't mix manual and generated types for the same entity in one file.",
+    "keywords": [
+      "duplicate",
+      "frontend/src/types/",
+      "DashboardApi",
+      "api.get",
+      "generated functions",
+      "adapter functions",
+      "don't mix"
+    ],
+    "source": "https://posthog.com/handbook/engineering/type-system",
+    "category": "procedural"
+  },
+  {
+    "question": "What does PostHog's person processing system make possible?",
+    "reference_answer": "Stable identity for a user across sessions, devices and platforms. This enables accurate unique user counts, cross-session analysis (funnels, retention, journeys), cross-device attribution, person profiles with properties, and targeting/personalization for feature flags, experiments and cohorts.",
+    "keywords": [
+      "stable identity",
+      "unique users",
+      "cross-session",
+      "cross-device",
+      "person profiles",
+      "feature flags",
+      "experiments",
+      "cohorts"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Trace an event's path from a client SDK to being queryable in PostHog.",
+    "reference_answer": "Client SDK, then Capture (Rust: validates, rate limits/overflow, produces to Kafka with partition key <token>:<distinct_id>), then the Kafka events_plugin_ingestion topic, then the Node.js ingestion pipeline (formerly the plugin server: person creates/updates/merges in PostgreSQL, $set/$set_once/$unset, produces person updates and processed events), then Kafka (clickhouse_events_json and person topics), then ClickHouse (events, person, person_distinct_id2, person_distinct_id_overrides), then HogQL, which turns queries into ClickHouse SQL and handles person joins and overrides.",
+    "keywords": [
+      "Capture",
+      "Rust",
+      "events_plugin_ingestion",
+      "<token>:<distinct_id>",
+      "Node.js",
+      "PostgreSQL",
+      "clickhouse_events_json",
+      "ClickHouse",
+      "HogQL"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "multi-hop"
+  },
+  {
+    "question": "How is a person's UUID generated in PostHog?",
+    "reference_answer": "Deterministically, from (team_id, distinct_id) at creation time, using UUIDv5: uuidv5(`${teamId}:${distinctId}`, PERSON_UUIDV5_NAMESPACE) in nodejs/src/worker/ingestion/person-uuid.ts. That's why the first $identify for a user often needs no override.",
+    "keywords": [
+      "deterministic",
+      "team_id",
+      "distinct_id",
+      "UUIDv5",
+      "PERSON_UUIDV5_NAMESPACE",
+      "person-uuid.ts"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "Can I use a distinct_id like 'backend' or 'python' for all my server-side events?",
+    "reference_answer": "No. A distinct ID must map to exactly one user, so values for a class of users like 'backend' or 'python' are invalid. Common valid formats are an email address, a UUID from a client SDK, the primary key in your User table, or a Stripe cus_xxx ID.",
+    "keywords": [
+      "exactly one user",
+      "invalid",
+      "backend",
+      "python",
+      "email",
+      "UUID",
+      "primary key",
+      "cus_xxx"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "scenario"
+  },
+  {
+    "question": "What is the Kafka partition key for captured events, and what ordering does that guarantee?",
+    "reference_answer": "Usually <token>:<distinct_id>. Events with the same distinct_id go to the same partition, so their order is kept. Events with different distinct_ids may land on different partitions with no ordering guarantee. So an anonymous event and its $identify (which has a different distinct_id) can be processed in parallel by different workers, and the pipeline is written to avoid race conditions. Cookieless events use <token>:<ip>, because their placeholder distinct_id is the same for every event.",
+    "keywords": [
+      "<token>:<distinct_id>",
+      "same partition",
+      "ordering",
+      "different partitions",
+      "$identify",
+      "race conditions",
+      "cookieless",
+      "IP"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "What happens during an $identify merge, and what are the three cases?",
+    "reference_answer": "$identify sends distinct_id (the identified ID) and $anon_distinct_id (the earlier anonymous ID), and the merge service links them. Cases: 1) only one person exists, so the missing distinct_id is added to it; 2) both exist, so they're merged (all distinct_ids moved, properties merged, source person deleted); 3) neither exists, so a new person is created with both distinct_ids.",
+    "keywords": [
+      "$identify",
+      "$anon_distinct_id",
+      "only one person",
+      "both persons",
+      "merge",
+      "delete source",
+      "neither",
+      "new person"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "What is person ID squashing, and why does PostHog need it?",
+    "reference_answer": "After a merge, historical events in ClickHouse still carry the old person_id. Joining events with person_distinct_id2 (every mapping, hundreds of millions of rows) would be too slow. So PostHog keeps a small person_distinct_id_overrides table with only mappings changed since the last squash, which queries LEFT JOIN until squashing finishes. A scheduled Dagster job (posthog/dags/person_overrides.py) snapshots pending overrides, uses a ClickHouse dictionary to look up new person_ids, runs an ALTER TABLE ... UPDATE mutation on events, then deletes the processed overrides.",
+    "keywords": [
+      "old person_id",
+      "person_distinct_id2",
+      "hundreds of millions",
+      "person_distinct_id_overrides",
+      "LEFT JOIN",
+      "Dagster",
+      "dictionary",
+      "ALTER TABLE ... UPDATE"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "What does the version field in posthog_persondistinctid mean?",
+    "reference_answer": "version = 0 means no override is needed: this distinct_id's events already have the correct person_id (e.g. the first $identify, thanks to the deterministic UUIDv5). version >= 1 means an override was created, because events exist with an old person_id that needs rewriting. Rows with version > 0 feed person_distinct_id_overrides through a materialized view.",
+    "keywords": [
+      "version = 0",
+      "no override",
+      "version >= 1",
+      "override",
+      "materialized view",
+      "UUID v5"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "What's the difference between 'anonymous events' and 'personless events'?",
+    "reference_answer": "Nothing. They're the same thing. 'Anonymous events' is the term in user-facing docs, and 'personless events' is the internal term. They're sent with $process_person_profile: false.",
+    "keywords": [
+      "same thing",
+      "anonymous events",
+      "personless",
+      "user-facing",
+      "internally",
+      "$process_person_profile: false"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "disambiguation"
+  },
+  {
+    "question": "Why do personless events exist, and what is skipped when $process_person_profile is false?",
+    "reference_answer": "Person processing is much of the per-event ingestion cost (Postgres lookups, creates/updates, merges, extra Kafka topics), so skipping it allows much lower pricing. The typical case is logged-out browsing traffic. Personless events get a deterministic 'fake' person UUID from the distinct_id. No Postgres person record is created, no person properties are stored, and ingestion is faster and cheaper. If the user later identifies, an override links their anonymous events to the real person.",
+    "keywords": [
+      "per-event cost",
+      "lower pricing",
+      "logged-out",
+      "fake person UUID",
+      "no person record",
+      "no person properties",
+      "faster",
+      "override"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "A personless event arrives for a distinct_id that already belongs to a real person. What does ingestion do?",
+    "reference_answer": "It uses that real person and treats the event like an identified event, as long as the person was created more than one minute earlier. This avoids race conditions with identify. If no real person exists, it creates a fake person with a deterministic UUID.",
+    "keywords": [
+      "real person",
+      "identified event",
+      "more than one minute",
+      "race conditions",
+      "fake person",
+      "deterministic UUID"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "scenario"
+  },
+  {
+    "question": "What does the posthog_personlessdistinctid table track?",
+    "reference_answer": "Distinct IDs used in personless mode: distinct_id, team_id and is_merged (whether it has been merged into a real person). The personless batch step batch-inserts rows (ON CONFLICT DO UPDATE keeps is_merged) and caches is_merged. It's used to decide whether an override is needed when merging.",
+    "keywords": [
+      "personless mode",
+      "is_merged",
+      "batch-inserts",
+      "ON CONFLICT",
+      "override"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "When does HogQL add the join to person_distinct_id_overrides?",
+    "reference_answer": "Only when it's needed: when the query references events.person_id or events.person.id. A query like SELECT count() FROM events WHERE event = '$pageview' gets no overrides join and stays fast. Queries that need person data get correct results even for merged persons not yet squashed. HogQL also adds team_id filters to every query for multi-tenancy.",
+    "keywords": [
+      "only when",
+      "events.person_id",
+      "events.person.id",
+      "LEFT JOIN",
+      "count()",
+      "squashed",
+      "team_id",
+      "multi-tenancy"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "A user changed their email last week. If I query person.properties.email on old events, do I get the old or new email?",
+    "reference_answer": "The old email. person.properties (Persons on Events, PoE) reads properties stored on the events table at ingestion time, with no join, so it reflects the state then. For the current email on all events, use pdi.person.properties.email, which joins through person_distinct_id to the person table and is slower. Most queries should use person.properties for performance.",
+    "keywords": [
+      "old",
+      "person.properties",
+      "PoE",
+      "ingestion time",
+      "pdi.person.properties",
+      "JOIN",
+      "current",
+      "slower"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "scenario"
+  },
+  {
+    "question": "How can I override the default person properties behaviour (PoE mode) in a HogQL query?",
+    "reference_answer": "The PoE mode setting can make person.properties use PDI properties instead. It's set at query level or team level (the team-level setting may be removed soon) through the HogQLQueryModifiers class. When it's overridden, poe.properties.X still gives PoE properties.",
+    "keywords": [
+      "PoE mode",
+      "query level",
+      "team level",
+      "HogQLQueryModifiers",
+      "poe.properties"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "How do I check whether a distinct_id was ever used in personless mode, and whether it should have an override?",
+    "reference_answer": "In PostgreSQL: SELECT * FROM posthog_personlessdistinctid WHERE team_id = X AND distinct_id = '...' for personless use. SELECT from posthog_persondistinctid for the version (0 = primary, no override; >= 1 = override should exist). In ClickHouse, check person_distinct_id_overrides for a pending override and person_distinct_id2 for mappings.",
+    "keywords": [
+      "posthog_personlessdistinctid",
+      "PostgreSQL",
+      "posthog_persondistinctid",
+      "version",
+      "person_distinct_id_overrides",
+      "person_distinct_id2",
+      "ClickHouse"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "Which ClickHouse table engine is used for the person table, and what does it keep?",
+    "reference_answer": "The person table is a ReplacingMergeTree that keeps the latest version per person UUID. posthog_person.version in Postgres increments on updates for ClickHouse consistency.",
+    "keywords": [
+      "ReplacingMergeTree",
+      "latest version",
+      "person UUID",
+      "version"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "Does squashing change the distinct_id stored on events?",
+    "reference_answer": "No. Squashing rewrites person_id on events. The distinct_id column keeps the value sent with the event and isn't changed by squashing.",
+    "keywords": ["no", "person_id", "distinct_id", "not changed"],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "technical"
+  },
+  {
+    "question": "What do I need to configure before PostHog can create OAuth applications locally?",
+    "reference_answer": "An RSA private key in OIDC_RSA_PRIVATE_KEY, because OAuth signs JWTs with RS256. Copy it from .env.example (grep OIDC_RSA_PRIVATE_KEY .env.example >> .env) or generate one with openssl genrsa 2048 piped through pkcs8. Without it, PostHog can't create OAuth apps: startup shows warning posthog.oauth.W001, and CIMD clients, dynamic client registration and toolbar sign-in get an OAuth server_error naming the missing setting.",
+    "keywords": [
+      "OIDC_RSA_PRIVATE_KEY",
+      "RS256",
+      ".env.example",
+      "openssl genrsa 2048",
+      "posthog.oauth.W001",
+      "server_error"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "procedural"
+  },
+  {
+    "question": "How do I get a test OAuth application for local development?",
+    "reference_answer": "Run python manage.py generate_demo_data. It creates a test OAuth app with a fixed client ID and secret and redirect URIs including http://localhost:3000/callback and https://example.com/callback. View it at http://localhost:8010/admin/posthog/oauthapplication/ and click 'View on site' for an example authorization URL with PKCE parameters.",
+    "keywords": [
+      "generate_demo_data",
+      "test OAuth application",
+      "localhost:3000/callback",
+      "Django admin",
+      "oauthapplication",
+      "View on site",
+      "PKCE"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "procedural"
+  },
+  {
+    "question": "When should an OAuth app be a confidential client versus a public client?",
+    "reference_answer": "Confidential: server-side apps, backend services and traditional web apps (Django/Rails/Express, server-to-server) that can store the client secret safely. They authenticate with client_id and client_secret during code exchange. Public: SPAs, mobile and desktop apps (React/Vue, iOS/Android, Electron) that can't keep secrets. They rely on PKCE and only need client_id.",
+    "keywords": [
+      "confidential",
+      "server-side",
+      "client_secret",
+      "public",
+      "SPA",
+      "mobile",
+      "Electron",
+      "PKCE",
+      "client_id"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "comparison"
+  },
+  {
+    "question": "I lost the client secret for my PostHog OAuth app. Can I retrieve it from Django admin?",
+    "reference_answer": "No. The secret is shown only once at creation and hashed after saving. Django admin shows the hashed version, which isn't your secret. Secrets can't be retrieved, so create a new application.",
+    "keywords": [
+      "only shown once",
+      "hashed",
+      "Django admin",
+      "cannot be retrieved",
+      "new application"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "scenario"
+  },
+  {
+    "question": "What grant types and signing algorithms does PostHog OAuth support?",
+    "reference_answer": "Only the Authorization code grant (with PKCE), and only RS256 (RSA with SHA-256) for signing ID tokens. Both are fixed. RS256 is described as more secure than symmetric algorithms like HS256.",
+    "keywords": [
+      "Authorization code",
+      "only",
+      "RS256",
+      "SHA-256",
+      "fixed",
+      "HS256"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What are the rules for redirect URIs on a PostHog OAuth application?",
+    "reference_answer": "A whitespace-separated list. PostHog only redirects to those URIs. HTTPS is required for non-localhost URIs, HTTP is only allowed for localhost/loopback (127.0.0.1), and fragments (#) aren't allowed. For 'Redirect URI mismatch', check the full path (not just the base URL), trailing slashes and HTTP vs HTTPS.",
+    "keywords": [
+      "whitespace-separated",
+      "HTTPS required",
+      "localhost",
+      "127.0.0.1",
+      "no fragments",
+      "trailing slashes",
+      "path"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What access levels can a user grant to an OAuth application, and how can an app force a single project?",
+    "reference_answer": "All (every org and team the user belongs to), Organization (specific orgs) or Team (specific teams/projects). This is picked during authorization, not in app settings. To force one team or org, add required_access_level=project or required_access_level=organization to the authorization URL. OAuth bearer requests must also satisfy the target organization's IP policy.",
+    "keywords": [
+      "All",
+      "Organization",
+      "Team",
+      "authorization step",
+      "required_access_level=project",
+      "required_access_level=organization",
+      "IP policy"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What scopes do PostHog OAuth tokens support?",
+    "reference_answer": "The same scopes as Personal API Keys, each with read and/or write (e.g. experiment:read, experiment:write). The full list is in frontend/src/lib/scopes.tsx. Standard OpenID Connect scopes are also supported: openid (required for OIDC, gives an ID token), profile and email.",
+    "keywords": [
+      "Personal API Keys",
+      "read",
+      "write",
+      "experiment:read",
+      "scopes.tsx",
+      "openid",
+      "profile",
+      "email"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How do I authenticate to the token introspection endpoint, and what scope is needed?",
+    "reference_answer": "POST to /oauth/introspect/ using HTTP Basic auth with client_id:client_secret (recommended), client credentials in the request body, or a Bearer token. Client authentication needs no scope. Bearer authentication needs the introspection scope. You only see tokens from your own application, and a token can always introspect itself.",
+    "keywords": [
+      "/oauth/introspect/",
+      "HTTP Basic",
+      "request body",
+      "Bearer",
+      "introspection scope",
+      "no scope",
+      "own application",
+      "itself"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "technical"
+  },
+  {
+    "question": "Why does introspecting a PostHog refresh token always return active: false?",
+    "reference_answer": "Refresh tokens can't be introspected, so they always return \"active\": false. Access tokens return \"active\": true if valid and not expired.",
+    "keywords": [
+      "refresh tokens",
+      "cannot be introspected",
+      "active: false",
+      "access tokens",
+      "active: true"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "technical"
+  },
+  {
+    "question": "I get 'Invalid code_verifier' when exchanging an OAuth code. What's wrong?",
+    "reference_answer": "The code_verifier in the token exchange must match the one used to make the code_challenge. Generate the code_challenge with SHA256, send that hashed value as code_challenge in the authorize request, and send the original value as code_verifier in the token request.",
+    "keywords": [
+      "code_verifier",
+      "code_challenge",
+      "SHA256",
+      "hashed",
+      "authorize request",
+      "original",
+      "token request"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "List PostHog's OAuth endpoints.",
+    "reference_answer": "Authorization: /oauth/authorize/. Token exchange: /oauth/token/. Introspection: /oauth/introspect/. User info: /oauth/userinfo/. JWKS: /oauth/.well-known/jwks.json. OpenID configuration: /oauth/.well-known/openid-configuration/. Dynamic client registration is POST /oauth/register/ (RFC 7591).",
+    "keywords": [
+      "/oauth/authorize/",
+      "/oauth/token/",
+      "/oauth/introspect/",
+      "/oauth/userinfo/",
+      "jwks.json",
+      "openid-configuration",
+      "/oauth/register/"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How do PostHog's own public OAuth clients like hogli authenticate?",
+    "reference_answer": "With client ID metadata documents (CIMD), not a registered application or dynamic client registration. The documents live in the posthog.com repo. To add one, create a JSON file whose client_id is its own URL. The fetcher follows no redirects, so the URL must return 200 directly. Put the scope ceiling in com.posthog.scopes. Examples include hogli and the Visual Review Chrome extension.",
+    "keywords": [
+      "client ID metadata documents",
+      "CIMD",
+      "hogli",
+      "Visual Review",
+      "posthog.com repo",
+      "client_id",
+      "no redirects",
+      "com.posthog.scopes"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "technical"
+  },
+  {
+    "question": "Why does PostHog validate an OAuth client's logo_uri if PostHog never fetches the logo?",
+    "reference_answer": "The check protects the visitor, not PostHog. The browser fetches the logo, and a self-hosted deployment shows these pages to people inside a trusted network, so an unchecked logo could make their browsers probe their own network. The URI must be https and pass is_url_allowed, the SSRF guard, which rejects loopback, private, metadata or internal hosts and resolves the name, so a public hostname pointing at a private address is rejected too.",
+    "keywords": [
+      "visitor",
+      "browser",
+      "self-hosted",
+      "trusted network",
+      "probe",
+      "https",
+      "is_url_allowed",
+      "SSRF",
+      "private address"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "security"
+  },
+  {
+    "question": "What happens when a signed-out visitor hits /oauth/authorize/?",
+    "reference_answer": "They're redirected to /login?next=<authorize URL>. The login, signup and email verification screens keep next, so they reach the consent screen once signed in. The redirect sets the ph_pending_oauth_connection cookie (public app metadata: client_name, client_id, plus logo_uri and redirect_host when known), SameSite=Lax, lasting 60 minutes, scoped to posthog.com on Cloud, and cleared on grant or deny. An account created while the cookie exists skips in-app onboarding (onboarding_skipped_reason = connector), and the data region is pinned so the connection can finish.",
+    "keywords": [
+      "/login?next=",
+      "consent screen",
+      "ph_pending_oauth_connection",
+      "60 minutes",
+      "SameSite=Lax",
+      "onboarding_skipped_reason",
+      "connector",
+      "region"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "technical"
+  },
+  {
+    "question": "Why might /oauth/authorize/ show a re-authentication page instead of returning a code?",
+    "reference_answer": "Approving OAuth consent, approving a device login and authorizing the legacy CLI create credentials that outlive the browser session. So they need a session that signed in or re-authenticated within SESSION_SENSITIVE_ACTIONS_AGE (2 hours by default) and passes a risk check. On an older session, first-party apps and automatic approval (which skip consent) render the authorize page with oauth_reauthentication_required instead of redirecting with a code.",
+    "keywords": [
+      "outlives the browser session",
+      "SESSION_SENSITIVE_ACTIONS_AGE",
+      "2 hours",
+      "re-authenticated",
+      "first-party",
+      "oauth_reauthentication_required"
+    ],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
+    "category": "security"
+  },
+  {
+    "question": "How are responsibilities split between the PostHog repo and the billing repo in the Vercel integration?",
+    "reference_answer": "The PostHog repo handles installation, SSO, feature flag sync and webhooks from Vercel. The billing repo handles subscription management, usage reporting to Vercel and invoice submission. They talk over internal HTTP APIs through BillingManager (ee/billing/billing_manager.py). Stripe still generates invoices, and Vercel collects payment.",
+    "keywords": [
+      "PostHog repo",
+      "installation",
+      "SSO",
+      "feature flag sync",
+      "webhooks",
+      "billing repo",
+      "usage reporting",
+      "invoice submission",
+      "BillingManager"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "technical"
+  },
+  {
+    "question": "What's the difference between OrganizationIntegration and Integration in the Vercel integration?",
+    "reference_answer": "OrganizationIntegration stores Vercel credentials (access tokens, installation ID) for the org, with one per Vercel installation. Integration is a per-team/project record for resource-level config (environment variables, product settings), created when a Vercel resource is provisioned for a project.",
+    "keywords": [
+      "OrganizationIntegration",
+      "credentials",
+      "installation ID",
+      "one per Vercel installation",
+      "Integration",
+      "per-team",
+      "resource",
+      "environment variables"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "disambiguation"
+  },
+  {
+    "question": "What happens when a brand-new customer installs PostHog from the Vercel Marketplace?",
+    "reference_answer": "Vercel calls PUT /api/vercel/v1/installations/{id} (ee/api/vercel/vercel_installation.py). PostHog creates the Organization (if new), a Team (Project) and an OrganizationIntegration, then calls BillingManager.authorize(billing_provider=\"vercel\"). Billing sets customer.billing_provider = \"vercel\" and creates a Stripe subscription with collection_method=send_invoice and metadata.billing_provider=vercel, then the user is sent to PostHog.",
+    "keywords": [
+      "PUT /api/vercel/v1/installations",
+      "Organization",
+      "Team",
+      "OrganizationIntegration",
+      "BillingManager",
+      "billing_provider",
+      "vercel",
+      "send_invoice"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "procedural"
+  },
+  {
+    "question": "If an existing PostHog customer links their org via Vercel's 'Link Existing Account', does their billing move to Vercel?",
+    "reference_answer": "No. Connectable installs don't call the billing service, so the customer keeps their existing PostHog billing and billing_provider doesn't change. The flow uses OAuth callbacks at /connect/vercel/callback with a state cookie check and a matching Vercel user, a signed link session (10 min TTL), org selection, and POST /api/vercel/connect/complete, creating an OrganizationIntegration of type 'connectable'. On uninstall, that record is just deleted, with no billing side effects.",
+    "keywords": [
+      "no",
+      "connectable",
+      "billing service",
+      "existing PostHog billing",
+      "/connect/vercel/callback",
+      "state",
+      "10 min",
+      "/api/vercel/connect/complete",
+      "deleted"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "scenario"
+  },
+  {
+    "question": "How does a Vercel customer's billing differ from a regular PostHog customer's?",
+    "reference_answer": "Vercel customers sign up through the Marketplace and pay through Vercel. Stripe uses collection_method send_invoice (30 days until due), not charge_automatically. metadata.billing_provider is 'vercel'. Invoices stay 'open' until Vercel's webhook. The customer email is noreply+vercel-{org_id}@posthog.com. Vercel handles communications. Daily usage goes to Vercel and Stripe, invoices are submitted to Vercel after finalization, flags sync to Vercel Experimentation, SSO is via /login/vercel, and uninstall resets billing_provider to posthog.",
+    "keywords": [
+      "Vercel",
+      "send_invoice",
+      "charge_automatically",
+      "30",
+      "open",
+      "noreply+vercel",
+      "communications",
+      "usage",
+      "Experimentation",
+      "/login/vercel"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "comparison"
+  },
+  {
+    "question": "What do Vercel customers see differently on the PostHog billing page?",
+    "reference_answer": "A banner saying billing is managed by Vercel, with a 'View invoices in Vercel' button when external_billing_provider_invoices_url is set. The 'Downgrade to free plan' card is hidden. With an active subscription, add-ons, platform plan switches and billing limits work normally. Without one, self-serve billing is locked (through selfServeBillingDisabledReason): upgrade CTAs are hidden or disabled and customers are told to contact support. The billing service refuses activate/authorize/portal requests with 400 billing_managed_by_provider.",
+    "keywords": [
+      "managed by Vercel",
+      "View invoices in Vercel",
+      "Downgrade to free plan",
+      "hidden",
+      "active subscription",
+      "selfServeBillingDisabledReason",
+      "contact support",
+      "billing_managed_by_provider"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "specific-fact"
+  },
+  {
+    "question": "After a Vercel customer uninstalls, how does PostHog still submit the final invoice to Vercel even though billing_provider was reset to posthog?",
+    "reference_answer": "Two safeguards. The final invoice Celery task gets billing_provider as an explicit string at queue time (still 'vercel') and doesn't read customer.billing_provider at run time. And when invoices are finalized, _resolve_billing_provider falls back in three steps: customer.billing_provider, then the Stripe subscription metadata (snapshotted at creation, still 'vercel'), then billing_provider_metadata on the local Invoice model.",
+    "keywords": [
+      "queue time",
+      "explicit string",
+      "Celery",
+      "_resolve_billing_provider",
+      "customer.billing_provider",
+      "subscription metadata",
+      "Invoice model",
+      "fallback"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "technical"
+  },
+  {
+    "question": "Why didn't the first invoice for a new Vercel customer appear in Vercel?",
+    "reference_answer": "Invoices with billing_reason == 'subscription_create' are skipped on purpose. They're $0 setup invoices created when the Stripe subscription starts.",
+    "keywords": [
+      "subscription_create",
+      "skipped",
+      "$0",
+      "setup invoices",
+      "Stripe subscription"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "troubleshooting"
+  },
+  {
+    "question": "A Vercel customer's payment failed. When should PostHog act, and what should it do?",
+    "reference_answer": "During Vercel's 15-day retry window (from marketplace.invoice.notpaid), Vercel owns retries and all payment-failure messages, so PostHog does nothing and sends no dunning emails. After marketplace.invoice.overdue fires, PostHog should: 1) suspend the installation (recoverable degradation, not data deletion), 2) notify the customer using Vercel's Get Account Information endpoint for contact details, and 3) wait at least 15 more days before anything destructive like deleting data.",
+    "keywords": [
+      "15-day retry window",
+      "notpaid",
+      "no dunning",
+      "overdue",
+      "suspend",
+      "not data deletion",
+      "Get Account Information",
+      "15 additional days"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "scenario"
+  },
+  {
+    "question": "How does PostHog keep Vercel's experimentation platform in sync with feature flags?",
+    "reference_answer": "Through Django signals. On save it calls VercelIntegration.sync_feature_flag_to_vercel() / sync_experiment_to_vercel(). On delete it calls delete_feature_flag_from_vercel() / delete_experiment_from_vercel(). The post_save handler treats instance.deleted (soft delete) as a delete, and hard deletes go through post_delete. Calls are wrapped in _safe_vercel_sync() so DB transactions don't fail, and VercelAPIClient (ee/vercel/client.py) retries with exponential backoff.",
+    "keywords": [
+      "Django signals",
+      "sync_feature_flag_to_vercel",
+      "delete_feature_flag_from_vercel",
+      "post_save",
+      "soft-deleted",
+      "post_delete",
+      "_safe_vercel_sync",
+      "exponential backoff"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "technical"
+  },
+  {
+    "question": "When does Vercel SSO automatically link to an existing PostHog account, and when is a normal PostHog login still required?",
+    "reference_answer": "An existing active account links automatically when the signed Vercel SSO token has a verified, matching email, subject to the installation's verified-domain restrictions. Accounts with two-factor authentication or enforced domain SSO must complete a PostHog login. A stored mapping keeps its original account, and a removed org member can't regain access by retrying SSO. Entry points: /login/vercel and /login/vercel/continue.",
+    "keywords": [
+      "verified",
+      "matching email",
+      "two-factor",
+      "enforced domain SSO",
+      "PostHog login",
+      "removed organization member",
+      "/login/vercel"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "security"
+  },
+  {
+    "question": "A Vercel SSO user's resource is in the EU region but they hit the US region. What happens?",
+    "reference_answer": "PostHog redirects them to the other region (EU) on purpose. It's a region check, not a fallback after failure.",
+    "keywords": [
+      "redirects",
+      "other region",
+      "EU",
+      "region check",
+      "not a failure fallback"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "scenario"
+  },
+  {
+    "question": "What happens when a Vercel Marketplace install is transferred to another Vercel team?",
+    "reference_answer": "The installation ID, access token, PostHog organization and billing stay the same. Vercel calls GET /v1/installations/{id}/resources/{resourceId}/plans and the transfer stalls until it succeeds. The installation endpoint isn't called. The integration-configuration.transferred webhook refreshes config.account. The new team's contact becomes an Owner, and old team members keep their PostHog access. Connectable installs can't be transferred.",
+    "keywords": [
+      "installation ID",
+      "billing",
+      "stay",
+      "/plans",
+      "stalls",
+      "integration-configuration.transferred",
+      "Owner",
+      "old team keep access",
+      "connectable"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "technical"
+  },
+  {
+    "question": "How do I escalate a Vercel integration or billing issue to Vercel, and where can I monitor the integration?",
+    "reference_answer": "Post in the shared Slack channel #posthog-vercel and add a :ticket: reaction so the Vercel team picks it up. For monitoring, use the 'Vercel Billing Integration' PostHog dashboard, which covers customer integrity, invoice lifecycle, usage reporting, submission gaps and financial reconciliation.",
+    "keywords": [
+      "#posthog-vercel",
+      ":ticket:",
+      "Vercel Billing Integration",
+      "dashboard",
+      "invoice lifecycle",
+      "reconciliation"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "procedural"
+  },
+  {
+    "question": "What does the daily usage report sent to Vercel contain?",
+    "reference_answer": "Period usage (cumulative), daily usage (today only) and billing line items with pricing. It's reported daily so it shows in the Vercel dashboard.",
+    "keywords": [
+      "daily",
+      "period usage",
+      "cumulative",
+      "daily usage",
+      "line items",
+      "pricing",
+      "Vercel dashboard"
+    ],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Which pages cover setting up the PostHog dev environment, and which one should a new engineer follow?",
+    "reference_answer": "developing-locally (the main guide, recommending Flox plus OrbStack and hogli start), manual-dev-setup (deprecated, no-Flox fallback), flox-multi-instance-workflow (isolated worktrees for several branches, building on developing-locally) and setup-ssl-locally (optional HTTPS via ngrok or NGINX). A new engineer should follow developing-locally with Flox.",
+    "keywords": [
+      "developing-locally",
+      "Flox",
+      "manual-dev-setup",
+      "deprecated",
+      "flox-multi-instance-workflow",
+      "worktrees",
+      "setup-ssl-locally"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/manual-dev-setup, https://posthog.com/handbook/engineering/flox-multi-instance-workflow, https://posthog.com/handbook/engineering/setup-ssl-locally",
+    "category": "multi-hop-aggregation"
+  },
+  {
+    "question": "The manual setup page's docker ps example shows ClickHouse 23.6 and Postgres 12. Are those the versions PostHog uses today?",
+    "reference_answer": "Not necessarily. They're from an example output on a page marked deprecated and likely out of date (its sample logs are dated December 2021). The pages don't state current production or dev versions, so the system shouldn't present those as current.",
+    "keywords": [
+      "example",
+      "deprecated",
+      "out of date",
+      "2021",
+      "not stated",
+      "not current"
+    ],
+    "source": "https://posthog.com/handbook/engineering/manual-dev-setup",
+    "category": "temporal"
+  },
+  {
+    "question": "What port does the local PostHog app run on: 8000 or 8010?",
+    "reference_answer": "Open the app at http://localhost:8010 (per developing-locally and the Flox workflow). Port 8000 is the Django server, used for example as the ngrok django tunnel and NGINX upstream, and 8234 is webpack/static. For normal use, go to 8010.",
+    "keywords": ["8010", "8000", "Django", "8234", "webpack"],
+    "source": "https://posthog.com/handbook/engineering/developing-locally, https://posthog.com/handbook/engineering/setup-ssl-locally, https://posthog.com/handbook/engineering/flox-multi-instance-workflow",
+    "category": "disambiguation"
+  },
+  {
+    "question": "Which ClickHouse tables are involved in person processing?",
+    "reference_answer": "events (with a person_id column that may be stale until squashed, and the original distinct_id), person (ReplacingMergeTree of person data), person_distinct_id2 (all distinct_id to person mappings, very large) and person_distinct_id_overrides (only pending overrides, filled by a materialized view for version > 0).",
+    "keywords": [
+      "events",
+      "person_id",
+      "person",
+      "ReplacingMergeTree",
+      "person_distinct_id2",
+      "person_distinct_id_overrides",
+      "materialized view"
+    ],
+    "source": "https://posthog.com/handbook/engineering/person-processing",
+    "category": "multi-hop-aggregation"
+  },
+  {
+    "question": "Does the Vercel integration guide say what share of revenue Vercel takes from Marketplace sales?",
+    "reference_answer": "No. The page covers architecture, installation, billing mechanics, invoicing, collections, flag sync, SSO and uninstall, but gives no revenue share or fee for Vercel. The system should say this isn't covered.",
+    "keywords": ["not covered", "revenue share", "no fee"],
+    "source": "https://posthog.com/handbook/engineering/vercel-integration",
     "category": "unanswerable"
   },
   {
-    "question": "Does PostHog offer a 4-day work week?",
-    "reference_answer": "The handbook doesn't describe a 4-day work week. It describes unlimited, permissionless time off (minimum 25 days a year) and near-complete flexibility over working hours, and says PostHog doesn't offer part-time work. The system shouldn't claim a 4-day week exists.",
-    "keywords": [
-      "not described",
-      "unlimited time off",
-      "flexibility",
-      "no part time"
-    ],
-    "source": "https://posthog.com/handbook/people/time-off, https://posthog.com/handbook/people/side-gigs, https://posthog.com/handbook/company/grown-ups",
-    "category": "unanswerable"
-  },
-  {
-    "question": "Why does PostHog require employees to work from the San Francisco office three days a week?",
-    "reference_answer": "False premise. PostHog is 100% remote. Hogpatch in San Francisco is a free coworking space for current-batch YC founders, not an employee office requirement. Team members meet in person at yearly offsites and ad-hoc meetups.",
-    "keywords": [
-      "false premise",
-      "100% remote",
-      "Hogpatch",
-      "YC founders",
-      "offsites"
-    ],
-    "source": "https://posthog.com/handbook/company/culture, https://posthog.com/handbook/people/hogpatch, https://posthog.com/handbook/company/offsites",
+    "question": "Does PostHog OAuth support the client credentials grant for machine-to-machine access?",
+    "reference_answer": "No. Only the Authorization code grant is supported, and the grant type is fixed. (Client credentials can be used to authenticate to the introspection endpoint, but that isn't a client credentials grant.)",
+    "keywords": ["no", "only", "Authorization code", "fixed", "introspection"],
+    "source": "https://posthog.com/handbook/engineering/oauth-development-guide",
     "category": "false-premise"
   },
   {
-    "question": "Which ClickHouse version is PostHog's main cluster running?",
-    "reference_answer": "The handbook pages don't state a ClickHouse version for the main cluster. The Logs post-mortem notes the Logs cluster was built separately so it could use later database versions, but no specific version is given. The system should say it isn't specified.",
+    "question": "Why does PostHog recommend Celery for long-running data pipelines?",
+    "reference_answer": "False premise. It doesn't. Celery can be unreliable for larger or long-running workflows at PostHog's scale and is only recommended for small, low-latency tasks. Long-running or complex workflows should use Temporal (or Dagster for internal data jobs with lineage needs).",
     "keywords": [
-      "not specified",
-      "Logs cluster",
-      "later database versions"
+      "false premise",
+      "unreliable",
+      "long-running",
+      "small",
+      "low-latency",
+      "Temporal",
+      "Dagster"
     ],
-    "source": "https://posthog.com/handbook/engineering/clickhouse/clusters, https://posthog.com/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss",
-    "category": "unanswerable"
+    "source": "https://posthog.com/handbook/engineering/stack",
+    "category": "false-premise"
+  },
+  {
+    "question": "What's the recommended way to run PostHog on Windows natively for development?",
+    "reference_answer": "There isn't one. Windows isn't supported natively. Use a Linux VM (ideally Ubuntu LTS Desktop). On WSL2, set $HOST_BIND to 0.0.0.0 and the debugpy address to 0.0.0.0:5678.",
+    "keywords": [
+      "not supported",
+      "Linux virtual machine",
+      "Ubuntu LTS Desktop",
+      "WSL2",
+      "HOST_BIND",
+      "0.0.0.0",
+      "5678"
+    ],
+    "source": "https://posthog.com/handbook/engineering/developing-locally",
+    "category": "false-premise"
   }
 ]

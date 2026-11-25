@@ -31,9 +31,10 @@ DB_NAME = str(Path(__file__).parent.parent / VECTOR_DB_NAME)
 optimizeLlm = ChatOllama(
     base_url="http://localhost:11434",
     # model="gpt-oss",
-
     model="qwen3:8b",
-    temperature=0,
+    temperature=0.7, 
+    top_p=0.8, 
+    top_k=20,
     reasoning=False,
     num_ctx=32768,
 )
@@ -63,7 +64,7 @@ def printOptimizedPage(htmlData):
     line = "=" * 80
     print(f"{line}\nOPTIMIZE PREVIEW: {htmlData['url']} ({htmlData['title']!r})")
     if optimized == normalize_text(original):
-        print("Rewrite was not used (too long, failed or too short), the original page is stored")
+        print("Rewrite was not used (failed or too short), the original page is stored")
     print(f"{line}\nBEFORE ({len(original)} chars)\n{line}\n{original}")
     print(f"{line}\nAFTER ({len(optimized)} chars, after normalize_text)\n{line}\n{optimized}\n{line}")
 
