@@ -1,0 +1,1378 @@
+[
+  {
+    "question": "What are PostHog's three communication values?",
+    "reference_answer": "1) Assume positive intent: always come from a place of positivity and grace. 2) Form an opinion: people live in different places with different perspectives, and PostHog wants to hear your thoughts, opinions and feelings. 3) Feedback is essential: help everyone improve in a direct but constructive way.",
+    "keywords": [
+      "assume positive intent",
+      "form an opinion",
+      "feedback is essential"
+    ],
+    "source": "https://posthog.com/handbook/company/communication",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Where should work discussions happen at PostHog, GitHub or Slack, and do I have to reply outside working hours?",
+    "reference_answer": "Asynchronous communication comes first. Discussion in GitHub pull requests (preferred) or issues beats everything else. If something is urgent, you can Slack someone a link to your GitHub comment and ask them to reply there. Casual day-to-day chat in Slack is completely normal. You're not expected to be available all the time, and there's no expectation to reply outside your planned working hours.",
+    "keywords": [
+      "asynchronous",
+      "pull requests",
+      "issues",
+      "Slack",
+      "link",
+      "no expectation",
+      "working hours"
+    ],
+    "source": "https://posthog.com/handbook/company/communication",
+    "category": "procedural"
+  },
+  {
+    "question": "If someone sends me a handbook link in reply to my question, does that mean I should have found it myself?",
+    "reference_answer": "No. Sending a handbook link means they're proud the answer is documented. It doesn't mean you should have found it yourself or that it's the complete answer. Ask as many questions as you like in public channels. If the answer isn't documented yet, make a pull request right away to add it where you looked for it.",
+    "keywords": [
+      "proud",
+      "documented",
+      "not",
+      "public channels",
+      "pull request",
+      "handbook"
+    ],
+    "source": "https://posthog.com/handbook/company/communication",
+    "category": "culture"
+  },
+  {
+    "question": "How do I give someone kudos at PostHog, and where are kudos shown?",
+    "reference_answer": "Use '/kudos @person for [reason]' in Slack at any time. The kudos isn't visible in the chat to others, but it's shown at the Monday All-Hands, where people's achievements from the previous week are recognized. '/kudos show 7' lists the last 7 days of submissions. You can also write directly into the All-Hands doc.",
+    "keywords": [
+      "/kudos",
+      "Monday",
+      "All-Hands",
+      "/kudos show 7",
+      "previous week"
+    ],
+    "source": "https://posthog.com/handbook/company/kudos",
+    "category": "procedural"
+  },
+  {
+    "question": "What is a manager at PostHog NOT responsible for?",
+    "reference_answer": "Managers don't decide compensation (that's the calculator and an exec-run process), set tasks for direct reports, provide career progression plans, decide team structure (exec team), 'approve' things like projects, expenses, days off or accounts, deal with HR issues (escalate to Fraser or Charles), handle legal matters (route to exec), or decide to hire or fire people (exec team).",
+    "keywords": [
+      "compensation",
+      "setting tasks",
+      "career progression",
+      "team structure",
+      "approving",
+      "HR",
+      "legal",
+      "hire or fire"
+    ],
+    "source": "https://posthog.com/handbook/company/management",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What are the responsibilities of a manager at PostHog?",
+    "reference_answer": "A short list: set the right context for direct reports, make sure they're happy and productive, be the hiring manager for new roles on the team, make good onboarding plans and small team offsite plans, work with execs early on team performance concerns, communicate downstream impact to other teams, and lead quarterly goal setting for the team and make sure goals are published.",
+    "keywords": [
+      "context",
+      "happy and productive",
+      "hiring manager",
+      "onboarding",
+      "offsites",
+      "performance",
+      "downstream impact",
+      "quarterly goal"
+    ],
+    "source": "https://posthog.com/handbook/company/management",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What is the keeper test, and who gets it?",
+    "reference_answer": "Team leads are periodically asked: 'If X was leaving for a similar role at another company, would you try to keep them?' Answers should come from PostHog's values. Where the answer is no, they dig into what it would take to become a yes. The form goes to the relevant Blitzscale member. It's only sent for people who have passed probation. New starters get 30/60/80-day check-ins instead. Keeper test responses aren't shown to the person assessed and don't replace direct feedback.",
+    "keywords": [
+      "would you try to keep them",
+      "team lead",
+      "values",
+      "Blitzscale",
+      "probation",
+      "not visible",
+      "direct feedback"
+    ],
+    "source": "https://posthog.com/handbook/company/management, https://posthog.com/handbook/people/feedback",
+    "category": "multi-hop"
+  },
+  {
+    "question": "How does quarterly goal setting work, and when must goals be merged?",
+    "reference_answer": "About 3 weeks before quarter end, the Blitzscale team sets larger company goals. About 2 weeks before, team leads run planning meetings with the relevant Blitzscale member, using the template. After the meeting, the team lead opens a PR on their small team page with the new goals and tags the Blitzscale member for review. Goal PRs must be merged before the next quarter starts, and objectives are usually reviewed at the first all-hands of the new quarter. Judy makes sure the meetings happen but doesn't schedule them.",
+    "keywords": [
+      "3 weeks",
+      "Blitzscale",
+      "2 weeks",
+      "team lead",
+      "PR",
+      "small team page",
+      "before the next quarter",
+      "Judy"
+    ],
+    "source": "https://posthog.com/handbook/company/goal-setting",
+    "category": "procedural"
+  },
+  {
+    "question": "Why should HOGS be written privately before a quarterly planning meeting?",
+    "reference_answer": "HOGS should be written privately and independently in your own notes, then pasted into the shared doc at the start of the session. This stops people from being swayed by each other's thinking before they've formed their own view. If prep is done properly, planning meetings should take 1 hour at most.",
+    "keywords": ["privately", "independently", "own notes", "skewed", "1 hour"],
+    "source": "https://posthog.com/handbook/company/goal-setting",
+    "category": "procedural"
+  },
+  {
+    "question": "Who decides whether a team change (new team, split, closure) happens, and how fast?",
+    "reference_answer": "Anyone can propose a team change by creating an issue with the team change proposal template in company-internal. Decisions should be fast, in less than a week. Team Blitzscale owns the final decision. Full consensus isn't needed, but people should have time to give feedback. Lengthy consultations and individual meetings with everyone affected should be avoided.",
+    "keywords": [
+      "anyone",
+      "issue",
+      "template",
+      "less than a week",
+      "Blitzscale",
+      "consensus",
+      "no lengthy consultations"
+    ],
+    "source": "https://posthog.com/handbook/company/team-changes",
+    "category": "procedural"
+  },
+  {
+    "question": "I want the company to switch from Google Docs to Notion. What process do I follow?",
+    "reference_answer": "This falls under the 'adding tools' (fad resilience) process for new company-wide tools. First, try the tool in a low-risk context that's easy to replace and has no sensitive data (check #legal if unsure). Then open a PR/issue in company internal explaining why. If you introduce something new, you become responsible for rolling it out and for replacing whatever it makes obsolete. Cheap, reversible decisions that only affect your own work don't need this process.",
+    "keywords": [
+      "fad resilience",
+      "low-risk context",
+      "sensitive data",
+      "#legal",
+      "pull request",
+      "responsible",
+      "rolling out",
+      "obsolete"
+    ],
+    "source": "https://posthog.com/handbook/company/adding-tools",
+    "category": "scenario"
+  },
+  {
+    "question": "What MFA method does PostHog require, and are Yubikeys still needed?",
+    "reference_answer": "All team members must enable MFA, and passkeys are the preferred method because they're phishing-resistant. Set them up for Google Workspace and GitHub at the very least, within your first week. Store most passkeys in 1Password so you can use them from your phone. Yubikeys used to be required (two per person) but have been replaced by passkeys and are no longer required or recommended.",
+    "keywords": [
+      "MFA",
+      "passkeys",
+      "phishing-resistant",
+      "Google Workspace",
+      "GitHub",
+      "first week",
+      "1Password",
+      "Yubikeys no longer"
+    ],
+    "source": "https://posthog.com/handbook/company/security",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Do commits to PostHog repositories need to be signed, and how is that enforced?",
+    "reference_answer": "Yes. Every commit pushed to a PostHog repository must be cryptographically signed. An org-wide GitHub ruleset enforces it on all branches, so authorship can be verified instead of trusting the Author field, which anyone can set. Engineers should set up commit signing in their first week.",
+    "keywords": [
+      "signed",
+      "cryptographically",
+      "GitHub ruleset",
+      "all branches",
+      "Author field",
+      "first week"
+    ],
+    "source": "https://posthog.com/handbook/company/security, https://posthog.com/handbook/engineering/sdks/releases",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How should PostHog engineers store their GitHub SSH keys?",
+    "reference_answer": "SSH keys stored on the filesystem are explicitly prohibited. Generate and store the key with Secretive or 1Password. Secretive is slightly preferred because it keeps the key in the macOS Secure Enclave, so it can never be exported or extracted, even by malware. Always use ECDSA or Ed25519, not RSA.",
+    "keywords": [
+      "prohibit",
+      "filesystem",
+      "Secretive",
+      "1Password",
+      "Secure Enclave",
+      "ECDSA",
+      "Ed25519",
+      "not RSA"
+    ],
+    "source": "https://posthog.com/handbook/engineering/security",
+    "category": "procedural"
+  },
+  {
+    "question": "What tool does PostHog use for laptop device management?",
+    "reference_answer": "PostHog uses Fleet (fleetdm.com) for mobile device management (MDM) on all laptops. It applies targeted policies that raise the security baseline of every device.",
+    "keywords": ["Fleet", "MDM", "laptops", "policies", "security baseline"],
+    "source": "https://posthog.com/handbook/company/security",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How can someone outside PostHog report a security vulnerability?",
+    "reference_answer": "Through PostHog's vulnerability disclosure program on Bugcrowd, or by emailing security-reports@posthog.com. Valid findings are rewarded. Advisory/CVE updates to the security advisories page should only happen as part of a declared incident. If an advisory is needed and no incident exists, one should be declared.",
+    "keywords": [
+      "Bugcrowd",
+      "vulnerability disclosure program",
+      "security-reports@posthog.com",
+      "rewarded",
+      "incident"
+    ],
+    "source": "https://posthog.com/handbook/company/security-advisories",
+    "category": "procedural"
+  },
+  {
+    "question": "How many countries are PostHog employees in?",
+    "reference_answer": "The handbook gives slightly different figures. The 'grown-ups' page says 23 countries across 3 continents 'at the time of writing', and the culture page says more than 20 countries. Both describe PostHog as 100% remote. A good answer says 20+/23 countries and notes it's a point-in-time figure.",
+    "keywords": [
+      "23 countries",
+      "more than 20",
+      "3 continents",
+      "100% remote",
+      "at the time of writing"
+    ],
+    "source": "https://posthog.com/handbook/company/grown-ups, https://posthog.com/handbook/company/culture",
+    "category": "conflict-resolution"
+  },
+  {
+    "question": "What is the 'Mr Blobby' reference in PostHog lore?",
+    "reference_answer": "Mr Blobby was the name of a project that changed how session recording data is ingested, to use S3 blob storage. It's named after a creepy '90s UK TV character, which fit because the project was nightmarishly hard.",
+    "keywords": [
+      "session recording",
+      "S3",
+      "blob storage",
+      "'90s",
+      "UK TV",
+      "nightmarishly hard"
+    ],
+    "source": "https://posthog.com/handbook/company/lore",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Can anyone attend another small team's sprint?",
+    "reference_answer": "Yes. Sprints are shared openly across the company, including Exec, and anyone can attend a specific small team's sprint. But every attendee should have a specific reason to be there. Anyone can also comment on the sprint GitHub issue before or after the sprint.",
+    "keywords": [
+      "anyone can attend",
+      "specific reason",
+      "transparently",
+      "comment",
+      "GitHub issue"
+    ],
+    "source": "https://posthog.com/handbook/company/sprints",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Which all-company offsite locations does the handbook mention?",
+    "reference_answer": "The offsites page links to Portugal (2021), Aruba (2023, hackathon) and Mykonos (2024, hackathon). The benefits page lists recent trips including Mexico, Aruba, Iceland and Portugal.",
+    "keywords": ["Portugal", "Aruba", "Mykonos", "Mexico", "Iceland"],
+    "source": "https://posthog.com/handbook/company/offsites, https://posthog.com/handbook/people/benefits",
+    "category": "multi-hop-aggregation"
+  },
+  {
+    "question": "How much notice does PostHog ask for when an employee resigns?",
+    "reference_answer": "30 days by default, unless local law sets a different maximum or minimum. Team members are expected to work through the notice period for handover and hiring. You're encouraged to talk to your manager or the People team first. If you still want to resign, email people@posthog.com.",
+    "keywords": [
+      "30 days",
+      "notice",
+      "local",
+      "work during",
+      "handover",
+      "people@posthog.com"
+    ],
+    "source": "https://posthog.com/handbook/people/offboarding",
+    "category": "people-policy"
+  },
+  {
+    "question": "Who makes the final decision to let someone go at PostHog?",
+    "reference_answer": "Tim and James are responsible for any final decision to let someone go. For performance cases, feedback will already have been given and the person will have had time to act on it.",
+    "keywords": ["Tim", "James", "final decision", "performance", "feedback"],
+    "source": "https://posthog.com/handbook/people/offboarding",
+    "category": "people-policy"
+  },
+  {
+    "question": "How long is the probation period at PostHog, and are there exceptions?",
+    "reference_answer": "Generally 3 months. During it, you can leave with 1 week's notice. If PostHog ends the contract, it pays 4 weeks' base salary. Sales roles (e.g. Account Executives) have a 6-month probation, because it's hard to judge closing ability in 3 months given sales cycles. German employees also have 6 months, in line with market practice there.",
+    "keywords": [
+      "3 months",
+      "1 week's notice",
+      "4 weeks' base salary",
+      "sales",
+      "6 month",
+      "German"
+    ],
+    "source": "https://posthog.com/handbook/people/compensation",
+    "category": "people-policy"
+  },
+  {
+    "question": "What check-ins do new starters have during probation?",
+    "reference_answer": "Team leads get an automated feedback form at the 30, 60 and 80-day marks, to make sure things are on track for passing probation. The page is titled 30/60/90 day check-ins, but the forms go out at 30, 60 and 80 days. By around day 60 it should be clear how things are going. Keeper tests only start after probation.",
+    "keywords": ["30", "60", "80", "team lead", "automated form", "probation"],
+    "source": "https://posthog.com/handbook/people/onboarding, https://posthog.com/handbook/company/management",
+    "category": "conflict-resolution"
+  },
+  {
+    "question": "Why does PostHog warn new joiners about email from James or Tim?",
+    "reference_answer": "After joining, PostHog doesn't use email to communicate internally. James or Tim will never ask you to do something critical over email only. They'll always confirm on Slack, and so will everyone else. So be very cautious of direct emails claiming to be from James, Tim or others at PostHog (likely phishing).",
+    "keywords": [
+      "not use email",
+      "critical",
+      "Slack",
+      "confirm",
+      "cautious",
+      "James",
+      "Tim"
+    ],
+    "source": "https://posthog.com/handbook/people/onboarding",
+    "category": "security"
+  },
+  {
+    "question": "How long does a disciplinary or grievance process typically take, and who sees the outcome?",
+    "reference_answer": "PostHog expects a process to take about 4 weeks, balancing thoroughness and speed. Outcomes are only shared with the people involved, not the wider team, and those involved are asked to keep it confidential. The policies are modeled on the Acas template. Questions go to Charles.",
+    "keywords": [
+      "~4 weeks",
+      "only shared with the people involved",
+      "confidential",
+      "Acas",
+      "Charles"
+    ],
+    "source": "https://posthog.com/handbook/people/grievances",
+    "category": "people-policy"
+  },
+  {
+    "question": "What are the stages of PostHog's disciplinary process?",
+    "reference_answer": "For minor misconduct that can't be resolved informally: a verbal warning. For serious misconduct or repeated minor misconduct: a written warning, then a final written warning. If that doesn't fix it, dismissal with or without severance. Stages can be skipped if misconduct is exceptionally serious.",
+    "keywords": [
+      "verbal warning",
+      "written warning",
+      "final written warning",
+      "dismissal",
+      "severance",
+      "omit"
+    ],
+    "source": "https://posthog.com/handbook/people/grievances",
+    "category": "people-policy"
+  },
+  {
+    "question": "Are keeper test responses visible to the person being assessed?",
+    "reference_answer": "No. Keeper test responses aren't visible to the person being assessed in the ops platform, so people can fill them in completely unfiltered. They exist to surface feedback to the relevant Blitzscale member and keep a record if the person changes teams or leads. They don't replace direct feedback. If you have feedback for someone, give it to them directly.",
+    "keywords": [
+      "not visible",
+      "unfiltered",
+      "Blitzscale",
+      "record",
+      "not a substitute",
+      "direct feedback"
+    ],
+    "source": "https://posthog.com/handbook/people/feedback",
+    "category": "people-policy"
+  },
+  {
+    "question": "Can I work from a WeWork or coworking space and expense it?",
+    "reference_answer": "Yes. Coworking, cafés or WeWork All Access are allowed under the expense policy, and the monthly User Limit covers it. Message Kendal to be added to the company WeWork account.",
+    "keywords": [
+      "WeWork All Access",
+      "co-working",
+      "expense policy",
+      "User Limit",
+      "Kendal"
+    ],
+    "source": "https://posthog.com/handbook/people/benefits, https://posthog.com/handbook/company/culture",
+    "category": "people-policy"
+  },
+  {
+    "question": "What happens at PostHog's Philosophy Club?",
+    "reference_answer": "It runs once a month, organized by Charles Cook. Each 30-minute session discusses one philosophical question in the Socratic tradition, with light pre-reading from the Stanford Encyclopedia of Philosophy (Crash Course videos are fine too). Structure: 5 min framing, 10 min clarification, 10 min probing with real examples, 10 min synthesis. The only rule is no observers: if you join, you take part.",
+    "keywords": [
+      "once a month",
+      "Charles Cook",
+      "30min",
+      "Socratic",
+      "Stanford Encyclopedia",
+      "no observers"
+    ],
+    "source": "https://posthog.com/handbook/people/philosophy-club",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Philosophy Club sessions are said to be 30 minutes, but do the segments add up?",
+    "reference_answer": "No. The listed segments are 5 + 10 + 10 + 10 = 35 minutes, while the page says each session is 30 minutes. A careful system should notice the mismatch and not just repeat '30 minutes'.",
+    "keywords": ["30min", "35", "5", "10", "inconsistent"],
+    "source": "https://posthog.com/handbook/people/philosophy-club",
+    "category": "conflict-resolution"
+  },
+  {
+    "question": "Who organizes BookHog, and where is the next book chosen?",
+    "reference_answer": "Michael organizes BookHog, PostHog's monthly book club, and picks the next book through a 'pseudo-democratic' process. Discussion and voting happen in the #books-and-films Slack channel. Books can be bought with the monthly User Limit.",
+    "keywords": [
+      "Michael",
+      "monthly",
+      "pseudo-democratic",
+      "#books-and-films",
+      "User Limit"
+    ],
+    "source": "https://posthog.com/handbook/people/bookhog",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Was 'Dune' one of the BookHog books, and which book on PostHog's culture inspiration did BookHog read?",
+    "reference_answer": "Yes, Dune is on the BookHog list. BookHog also read 'No Rules Rules', the book that inspired PostHog's context-based expense policy and is listed among the books that influenced the company.",
+    "keywords": ["Dune", "No Rules Rules", "expense policy", "influenced"],
+    "source": "https://posthog.com/handbook/people/bookhog, https://posthog.com/handbook/people/spending-money, https://posthog.com/handbook/story",
+    "category": "multi-hop"
+  },
+  {
+    "question": "How does PostHog view the talent (recruiting) team?",
+    "reference_answer": "As a growth function, not a support function. Talent partners are asked to think like owners: understand which products PostHog needs to build and who's needed to build them, how the commercial team makes customers successful, and how hiring funnels perform. They own the process end to end and remove distractions, so other team members mainly focus on assessment.",
+    "keywords": [
+      "growth function",
+      "not support",
+      "owners",
+      "end to end",
+      "remove distractions",
+      "assessment"
+    ],
+    "source": "https://posthog.com/handbook/people/talent",
+    "category": "specific-fact"
+  },
+  {
+    "question": "How is location factored into PostHog pay?",
+    "reference_answer": "Location factors are mostly based on GitLab's location factors and reflect cost of market (what it costs to hire that role in that place), not cost of living. That's why San Francisco has the highest factor even though other places cost more to live in. The factor includes the local exchange rate, and pay is in local currency unless there's a very good reason otherwise.",
+    "keywords": [
+      "GitLab",
+      "cost of market",
+      "not cost of living",
+      "San Francisco",
+      "exchange rate",
+      "local currency"
+    ],
+    "source": "https://posthog.com/handbook/people/compensation",
+    "category": "people-policy"
+  },
+  {
+    "question": "What percentile of the market does PostHog pay engineers versus other roles?",
+    "reference_answer": "Engineers are paid near the top of market, defined as the 90th percentile at review time, because PostHog believes there's a 10x difference between average and top engineers. Other roles are paid towards the top of market, defined as the 50th percentile + 20%.",
+    "keywords": [
+      "90th percentile",
+      "10x",
+      "50th percentile + 20%",
+      "top of market"
+    ],
+    "source": "https://posthog.com/handbook/people/compensation",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What levels exist in PostHog's compensation framework?",
+    "reference_answer": "Junior (rarely hired), Intermediate, Senior, Staff, Director, and Principal (same level as Director). Level reflects impact, not importance, and isn't a title. Within each level there are Steps. Most people are hired into the 'Established' step by default.",
+    "keywords": [
+      "Junior",
+      "Intermediate",
+      "Senior",
+      "Staff",
+      "Director",
+      "Principal",
+      "Step",
+      "Established"
+    ],
+    "source": "https://posthog.com/handbook/people/compensation",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Does PostHog give an annual inflation raise?",
+    "reference_answer": "No. Pay reviews don't factor in inflation separately, because it's already reflected in the market data used for benchmarks. Reviews and benchmarking keep salaries in line with the market instead.",
+    "keywords": ["no", "inflation", "market data", "benchmark"],
+    "source": "https://posthog.com/handbook/people/compensation",
+    "category": "false-premise"
+  },
+  {
+    "question": "According to the handbook, will a manager build a career progression plan for me?",
+    "reference_answer": "No. Providing a career progression plan isn't a manager's responsibility. The career progression page also says PostHog doesn't use a checklist or formal progression framework, and that 'getting a manager to progress you' isn't how it works, because that gives managers too much power. Motivation has to be intrinsic. Progression comes from understanding team and company objectives and consistently caring about users, the team and PostHog.",
+    "keywords": [
+      "not responsible",
+      "no checklist",
+      "formal framework",
+      "manager",
+      "intrinsic",
+      "objectives"
+    ],
+    "source": "https://posthog.com/handbook/company/management, https://posthog.com/handbook/people/career-progression",
+    "category": "multi-hop"
+  },
+  {
+    "question": "What do the P0–P3 bug priority labels mean at PostHog?",
+    "reference_answer": "P0: critical, breaking issue (page crash, missing functionality). P1: urgent, non-breaking (no crash but low usability). P2: semi-urgent, non-breaking, affects UX but works. P3: icebox, address when possible. Security issues have a separate prioritization scheme aligned with SOC 2 policies and need the 'security' label.",
+    "keywords": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "critical",
+      "icebox",
+      "security label",
+      "SOC 2"
+    ],
+    "source": "https://posthog.com/handbook/engineering/bug-prioritization",
+    "category": "specific-fact"
+  },
+  {
+    "question": "What's the difference between a moonshot and a roofshot goal?",
+    "reference_answer": "Moonshots are big, scary goals you expect to fail 50% of the time. Failure should teach as much as success, and just scraping the goal counts as success. Roofshots may also be big, but you expect to hit them 100% of the time, e.g. things you can't afford to fail (regulatory compliance) or where you're confident in the approach. Goals should be clear, finite and assessable.",
+    "keywords": [
+      "moonshot",
+      "50%",
+      "roofshot",
+      "100%",
+      "compliant",
+      "clear",
+      "finite",
+      "assessable"
+    ],
+    "source": "https://posthog.com/handbook/engineering/development-process",
+    "category": "comparison"
+  },
+  {
+    "question": "How do I get AWS access as a new PostHog engineer?",
+    "reference_answer": "Open a PR to the posthog-cloud-infra repo adding your details in the identity center Terraform config with 'groups = local.default_groups' (Developers and DevelopersRO), using your email as username, and add team infra as reviewer. Once it's merged, log in via http://go/aws. For the dev environment, use the /awsaccess command in #aws-access. 'Explicit deny' errors in the CLI usually mean you need an MFA session token.",
+    "keywords": [
+      "posthog-cloud-infra",
+      "Terraform",
+      "default_groups",
+      "team infra",
+      "go/aws",
+      "#aws-access",
+      "MFA"
+    ],
+    "source": "https://posthog.com/handbook/engineering/cloud-providers",
+    "category": "procedural"
+  },
+  {
+    "question": "I need to email customers about an API deprecation. Who handles it?",
+    "reference_answer": "Loop in the Developer Marketing team. They own customer comms and handle the copy and send through PostHog Workflows. Bring a rough draft of what you want to say and why, plus the audience (a PostHog cohort or a list of org_ids). Prior art is the feature flags quota-limit rollout (product-internal#720). Developer Marketing also handles incident comms.",
+    "keywords": [
+      "Developer Marketing",
+      "PostHog Workflows",
+      "rough draft",
+      "cohort",
+      "org_id",
+      "quota-limit"
+    ],
+    "source": "https://posthog.com/handbook/engineering/customer-comms",
+    "category": "procedural"
+  },
+  {
+    "question": "How does PostHog's internal #changelog Slack channel get populated?",
+    "reference_answer": "Agentic workflows scan merged PRs and feature flag changes in the posthog/posthog repo and summarize them into the channel. PRs still behind a feature flag are left out, based on the 'Release status' section of the PR template. The Wizard & Docs team owns the channel. Support team members are expected to join it.",
+    "keywords": [
+      "agentic workflows",
+      "merged PRs",
+      "feature flag",
+      "Release status",
+      "Wizard & Docs",
+      "Support"
+    ],
+    "source": "https://posthog.com/handbook/engineering/customer-comms, https://posthog.com/handbook/support/support-team",
+    "category": "multi-hop"
+  },
+  {
+    "question": "How does the changelog bot turn PRs into published changelog entries?",
+    "reference_answer": "1) Daily intake: a Cloudflare Worker scans merged PRs across 26 repos as candidates. 2) Weekly curation: an AI agent in the same Worker ranks each team's week, shows at most 10 items per team, and groups near-duplicates. 3) Digest: every Thursday a Python app posts cards to each team's Slack channel. 4) Review in Slack. 5) Publish: clicking Publish opens an issue in PostHog/changelog-drafts with YAML frontmatter and a 'publish' label. A GitHub Action with the Strapi token posts it to posthog.com.",
+    "keywords": [
+      "Cloudflare Worker",
+      "26 repos",
+      "10 items",
+      "Thursday",
+      "Python app",
+      "changelog-drafts",
+      "Strapi"
+    ],
+    "source": "https://posthog.com/handbook/wizard-and-docs/how-to-publish-changelog",
+    "category": "procedural"
+  },
+  {
+    "question": "What's the rule of thumb for what goes in the changelog?",
+    "reference_answer": "If you'd want a user to know about it, it belongs in the changelog. Entries are mostly new features but can include beta launches, UX improvements and performance improvements.",
+    "keywords": [
+      "want a user to know",
+      "new features",
+      "beta",
+      "UX",
+      "performance"
+    ],
+    "source": "https://posthog.com/handbook/wizard-and-docs/how-to-publish-changelog",
+    "category": "specific-fact"
+  },
+  {
+    "question": "When should a product engineer visit a customer in person, and which customers are good candidates?",
+    "reference_answer": "Even though PostHog is fully remote, product engineers are encouraged to visit customers to gather feedback and ship improvements on the spot. In person you notice team dynamics, daily tools and friction that don't come up on calls, and people polish their feedback less. Good candidates are customers you 'click' with: friendly, proactive with feedback, often with heavy usage and multiple power users. It makes most sense when their team is at least partly in-office.",
+    "keywords": [
+      "fully remote",
+      "feedback",
+      "ship",
+      "team dynamics",
+      "friction",
+      "click",
+      "power users",
+      "in-office"
+    ],
+    "source": "https://posthog.com/handbook/engineering/visiting-customers",
+    "category": "scenario"
+  },
+  {
+    "question": "A self-hosted user asks for help. What should the support hero ask first?",
+    "reference_answer": "Ask whether they're self-hosting or on Cloud. If self-hosting: what they've tried so far, their cloud provider and node count, whether they use the Helm chart (and share values.yaml), logs from erroring pods, whether monitoring is set up (at least Grafana and Prometheus in values.yaml), and how many events are in ClickHouse and were ingested last month. Then start debugging with 'kubectl get pods -n posthog', before looping in Infrastructure.",
+    "keywords": [
+      "self-hosting",
+      "Helm chart",
+      "values.yaml",
+      "logs",
+      "Grafana",
+      "Prometheus",
+      "kubectl get pods",
+      "Infrastructure"
+    ],
+    "source": "https://posthog.com/handbook/engineering/deployments-support",
+    "category": "procedural"
+  },
+  {
+    "question": "Why did PostHog choose ClickHouse in 2020, and what alternatives were considered?",
+    "reference_answer": "PostHog was struggling to scale and evaluated Pinot, Presto, Druid, TimescaleDB, CitusDB and ClickHouse on speed (real-time, not too expensive), complexity (easy for self-hosters, no Hadoop stack) and query interface (standard SQL; Druid was ruled out because its SQL wrapper isn't exactly SQL). ClickHouse fit all three and repeatedly performed an order of magnitude better. It also had excellent compression, beating ORC and Parquet.",
+    "keywords": [
+      "2020",
+      "Pinot",
+      "Presto",
+      "Druid",
+      "TimescaleDB",
+      "speed",
+      "complexity",
+      "SQL",
+      "order of magnitude",
+      "compression"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse",
+    "category": "technical"
+  },
+  {
+    "question": "Why does PostHog run many ClickHouse clusters instead of one?",
+    "reference_answer": "For workload isolation. With a single cluster, heavy background jobs (large exports, cohort recalculations, backfills) competed with interactive queries for CPU, memory and disk I/O, and latency spiked. So ClickHouse is split by workload: low-latency clusters for interactive product queries, separate clusters for ingestion, and dedicated capacity for session replay, logs, batch exports, API-style endpoints and internal tooling. A spike in one can't degrade the others, and each can be tuned separately.",
+    "keywords": [
+      "workload isolation",
+      "single cluster",
+      "exports",
+      "backfill",
+      "interactive queries",
+      "ingestion",
+      "dedicated"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/clusters",
+    "category": "technical"
+  },
+  {
+    "question": "How does PostHog store JSON event properties in ClickHouse, and what are the downsides?",
+    "reference_answer": "JSON is stored as String (VARCHAR) columns and parsed at query time with JSONExtract functions. Downsides: the columns are large even after compression (slow I/O), parsing needs CPU, and storage isn't optimal (repeated keys, numbers as strings). It's compressed with LZ4 by default, and materialized columns are created for frequently queried JSON keys to speed things up.",
+    "keywords": [
+      "String",
+      "JSONExtract",
+      "query-time",
+      "I/O",
+      "CPU",
+      "LZ4",
+      "materialized columns"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/working-with-json",
+    "category": "technical"
+  },
+  {
+    "question": "What's the gotcha with ClickHouse dictionaries that use a ClickHouse table as a source?",
+    "reference_answer": "If you don't provide a PASSWORD when creating the dictionary, calls like getDictOrNull fail with authentication errors. You can put the password in the DDL, but if the password is ever rotated you have to re-run the migration or auth errors return. PostHog doesn't use dictionaries often because of production headaches like this.",
+    "keywords": [
+      "PASSWORD",
+      "getDictOrNull",
+      "Authentication failed",
+      "DDL",
+      "rotated",
+      "migration"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/dictionaries",
+    "category": "technical"
+  },
+  {
+    "question": "When querying ClickHouse's system.query_log, what filters should you use to avoid misleading results?",
+    "reference_answer": "Filter on is_initial_query (1 = the query sent to the coordinator, 0 = internal shard queries) for distributed queries. Use clusterAllReplicas('<cluster>', system.query_log) to query all nodes. Filter type = 'QueryFinish' so QueryStart rows (with query_duration_ms = 0) don't skew averages. ProfileEvents has detailed per-query metrics.",
+    "keywords": [
+      "is_initial_query",
+      "clusterAllReplicas",
+      "QueryFinish",
+      "QueryStart",
+      "query_duration_ms",
+      "ProfileEvents"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/performance",
+    "category": "technical"
+  },
+  {
+    "question": "How does PostHog attribute ClickHouse queries to the code or feature that ran them?",
+    "reference_answer": "Queries use the log_comment SETTING to carry JSON metadata. Most queries from Django HTTP requests include http_request_id, route_id and id. batch_export, app and api traffic use separate ClickHouse users with tuned settings so none starves the others. In Python, the tag_queries helper tags all queries in that context. The goal is to know why a query started, who started it and how many resources it used.",
+    "keywords": [
+      "log_comment",
+      "http_request_id",
+      "route_id",
+      "separate ClickHouse users",
+      "batch_export",
+      "tag_queries"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/query-attribution",
+    "category": "technical"
+  },
+  {
+    "question": "In ClickHouse MergeTree tables, what are parts and granules?",
+    "reference_answer": "Data is stored in parts. Each part is a separate directory on disk, sorted by the ORDER BY and compressed. Parts can be Wide or Compact depending on size. Data in a part is split into granules (index_granularity, 8192 rows in the example), which marks point to. The data storage page also explains how ORDER BY and PARTITION BY affect performance, EXPLAIN, and PREWHERE vs WHERE.",
+    "keywords": [
+      "parts",
+      "directory",
+      "ORDER BY",
+      "compressed",
+      "Wide",
+      "Compact",
+      "granules",
+      "8192"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/data-storage",
+    "category": "technical"
+  },
+  {
+    "question": "What is the PostHog AI platform, and why was it built instead of each team building its own AI features?",
+    "reference_answer": "It's shared infrastructure for building AI features across all products, like HogQL is for queries. It avoids 'death by random AI widgets'. Without it, PostHog would face a fragmented UX, duplicated effort (auth, error handling, rate limiting, tool calling), maintenance burden, and teams limited to simple features. It provides a single-loop agent that any product can extend with domain-specific tools.",
+    "keywords": [
+      "shared",
+      "HogQL",
+      "death by random AI widgets",
+      "fragmented",
+      "duplicated",
+      "single-loop agent",
+      "tools"
+    ],
+    "source": "https://posthog.com/handbook/engineering/ai/ai-platform",
+    "category": "technical"
+  },
+  {
+    "question": "What core tools does the PostHog AI single-loop agent have, and how do products extend it?",
+    "reference_answer": "Core tools: search, read_data, read_taxonomy and todo_write (the team-structure page also mentions enable_mode). Products extend the agent through dynamically loadable agent modes (e.g. SQL, Analytics, CDP, custom product modes). Capabilities are exposed through the MCP server, which serves PostHog AI, Deep Research, Session Summaries, PostHog Desktop, the Wizard and tools like Claude Code.",
+    "keywords": [
+      "search",
+      "read_data",
+      "read_taxonomy",
+      "todo_write",
+      "modes",
+      "MCP server",
+      "Deep Research",
+      "Wizard"
+    ],
+    "source": "https://posthog.com/handbook/engineering/ai/architecture, https://posthog.com/handbook/engineering/ai/team-structure",
+    "category": "technical"
+  },
+  {
+    "question": "Where does PostHog AI appear inside the PostHog app?",
+    "reference_answer": "The side panel (opens next to any page; most important for product teams), /ai (the full-page scene; /max redirects here, and /ai/history lists past threads), /home (the AI-first homepage embeds an instance), /tasks (standalone agent runs), the Signals inbox (read-only embeds of finished runs), and PostHog Desktop (a separate app running the same agent on tasks). Through MCP tools and skills it also works in Claude Code, Cursor, Codex and others.",
+    "keywords": [
+      "side panel",
+      "/ai",
+      "/max",
+      "/home",
+      "/tasks",
+      "Signals inbox",
+      "PostHog Desktop",
+      "MCP"
+    ],
+    "source": "https://posthog.com/handbook/engineering/ai/implementation",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Which team builds PostHog Desktop, and what does the Self-driving team do?",
+    "reference_answer": "PostHog Desktop, an agent-powered product workspace organized around multiplayer channels, is built by the Surfaces team, which owns the desktop app and task execution pipeline. The Self-driving team turns PostHog data into tasks coding agents can work on, e.g. improvements from session replays, fixes for errors from error tracking, and new experiments from analytics. The PostHog AI team owns the core platform: MCP server, skills system, web PostHog AI, sandboxed agents and shared tools.",
+    "keywords": [
+      "Surfaces",
+      "PostHog Desktop",
+      "task execution",
+      "Self-driving",
+      "tasks",
+      "coding agents",
+      "PostHog AI team",
+      "MCP"
+    ],
+    "source": "https://posthog.com/handbook/engineering/ai/team-structure",
+    "category": "disambiguation"
+  },
+  {
+    "question": "My team wants to add AI features for the first time. How do we get help from the PostHog AI team?",
+    "reference_answer": "Message your plans in the #team-max-ai Slack channel. The PostHog AI team will do its best to assign a supporting engineer. Products already integrated with Max always have a supporting engineer on the Max team. Tag them on PRs and questions about new features, missing Max API features or failures.",
+    "keywords": ["#team-max-ai", "supporting engineer", "Max", "tag", "PRs"],
+    "source": "https://posthog.com/handbook/engineering/working-with-max-ai",
+    "category": "procedural"
+  },
+  {
+    "question": "What are the traits of a 'bad product engineer' according to PostHog?",
+    "reference_answer": "Examples: treating research as two weeks instead of two hours, not being able to explain company strategy or who their product is for, not knowing competitors, only working on what they're told, not knowing any users' names, never challenging why they're working on something, not talking to users, and not tracking whether what they built is used.",
+    "keywords": [
+      "two weeks",
+      "two hours",
+      "strategy",
+      "competitors",
+      "told to work",
+      "names of any of their users",
+      "talk to users",
+      "track"
+    ],
+    "source": "https://posthog.com/handbook/engineering/product-engineering",
+    "category": "specific-fact"
+  },
+  {
+    "question": "Who runs the SDK Support Hero rotation, and what should they watch?",
+    "reference_answer": "The Client Libraries team runs it, with one member designated SDK Support Hero each week on an incident.io schedule. They watch escalated SDK tickets in PostHog Support (bookmarked in #support-client-libraries) and new issues in SDK repos like posthog-js, posthog-python, posthog-ios, posthog-android and posthog-flutter, including mobile.",
+    "keywords": [
+      "Client Libraries",
+      "weekly",
+      "incident.io",
+      "escalated SDK tickets",
+      "#support-client-libraries",
+      "posthog-js",
+      "mobile"
+    ],
+    "source": "https://posthog.com/handbook/engineering/sdks/support-rotation",
+    "category": "procedural"
+  },
+  {
+    "question": "How does posthog.com render pages, and what framework is it built on?",
+    "reference_answer": "posthog.com runs on Gatsby with a custom windowing system built on React context providers. Every page is a draggable window in a desktop-style environment. Pages are wrapped through Gatsby's wrapPageElement in gatsby-browser.tsx. Key components: App Provider (src/context/App.tsx, state and window logic), Wrapper (desktop layout), AppWindow (per-window state) and Desktop (wallpapers and icons).",
+    "keywords": [
+      "Gatsby",
+      "windowing system",
+      "React context",
+      "draggable window",
+      "wrapPageElement",
+      "App Provider",
+      "AppWindow",
+      "Desktop"
+    ],
+    "source": "https://posthog.com/handbook/engineering/posthog-com/technical-architecture",
+    "category": "technical"
+  },
+  {
+    "question": "Who owns writing product documentation, the product team or the Wizard & Docs team?",
+    "reference_answer": "Product engineering teams own their docs: documenting new features, reviewing and merging Inkeep-generated docs PRs, adding SDK doc comments, clarifying docs based on support tickets, and making sure public betas have linked docs. The Wizard & Docs team improves docs as a knowledge base: tools and systems for quality and structure, priority docs content, reviewing team drafts, navigation and discovery, context services for agents like the AI wizard, and large docs projects. They can't write docs for everyone.",
+    "keywords": [
+      "product engineering teams",
+      "own",
+      "Inkeep",
+      "SDK doc comments",
+      "public betas",
+      "Wizard & Docs",
+      "context services"
+    ],
+    "source": "https://posthog.com/handbook/wizard-and-docs/docs-ownership, https://posthog.com/handbook/engineering/writing-docs",
+    "category": "disambiguation"
+  },
+  {
+    "question": "What's the difference between a pocket guide and PostHog docs?",
+    "reference_answer": "Docs are the reference manual, formatted for agents and for humans skimming for a quick answer (internally 'agent food', still being worked on). Pocket guides are 'learn with a story': they follow product teams using PostHog to make decisions, with real use cases and examples from Twig.com, for people who want to learn without reading a manual. The Product Analytics Learn page and its pocket guide set the quality bar.",
+    "keywords": [
+      "reference manual",
+      "agent food",
+      "story",
+      "Twig.com",
+      "Product Analytics",
+      "quality bar"
+    ],
+    "source": "https://posthog.com/handbook/wizard-and-docs/pocket-guides",
+    "category": "comparison"
+  },
+  {
+    "question": "What are the four phases of the PostHog product lifecycle?",
+    "reference_answer": "1) Setting up: initial planning and alpha development behind a feature flag. 2) Alpha: slowly adding customers you've spoken with to the flag. 3) Beta: open to all users who opt in. 4) General availability: full release with pricing and a marketing launch. The detailed steps are in the new product RFC template.",
+    "keywords": [
+      "setting up",
+      "alpha",
+      "beta",
+      "general availability",
+      "feature flag",
+      "pricing",
+      "RFC template"
+    ],
+    "source": "https://posthog.com/handbook/product/releasing-new-products-and-features",
+    "category": "procedural"
+  },
+  {
+    "question": "What's the difference between early access features and feature previews?",
+    "reference_answer": "Early access features are the producer side: product teams create and manage them in Early Access Management, each linked to a feature flag and moving through draft, concept, alpha, beta and GA stages. Feature previews are the user-facing UI in settings where users opt in to those early access features.",
+    "keywords": [
+      "early access features",
+      "producer",
+      "feature flag",
+      "draft",
+      "concept",
+      "feature previews",
+      "user-facing",
+      "opt in"
+    ],
+    "source": "https://posthog.com/handbook/product/releasing-new-products-and-features",
+    "category": "comparison"
+  },
+  {
+    "question": "How should I recruit users for a feedback interview with PostHog Surveys?",
+    "reference_answer": "Use PostHog Surveys (there's a user interview template). Create a cohort first (static copy) and use it as a display condition, apply a survey wait period (14 days recommended), and for large cohorts (>1,000 users) start at 20–30% rollout, not 100%. PMs use cal.com for scheduling. Other options: message customers who asked in Slack, email roadmap subscribers, or email a slice of users like top users or churned users.",
+    "keywords": [
+      "Surveys",
+      "cohort",
+      "static",
+      "14 days",
+      "1,000",
+      "20-30%",
+      "cal.com",
+      "roadmap"
+    ],
+    "source": "https://posthog.com/handbook/product/user-feedback",
+    "category": "procedural"
+  },
+  {
+    "question": "How often are per-product growth reviews done, and what should they focus on?",
+    "reference_answer": "Monthly, for products with product-market fit and revenue, ideally at the start of the month covering the previous month. Most are async: the PM reviews key metrics, analyses anomalies and shares an overview in Slack. They should focus on anomalies, not expected metric behavior. Between reviews, the PM monitors metrics and acts on deviations.",
+    "keywords": [
+      "monthly",
+      "product-market fit",
+      "start of the month",
+      "asynchronously",
+      "PM",
+      "anomalies",
+      "Slack"
+    ],
+    "source": "https://posthog.com/handbook/product/per-product-growth-reviews",
+    "category": "procedural"
+  },
+  {
+    "question": "Per-product growth reviews vs growth sessions: how do they differ?",
+    "reference_answer": "Per-product growth reviews are monthly, PM-led and mostly async reviews of one product's metrics and anomalies. Growth sessions are company-level meetings every four weeks with Raquel, Tim, James and Charles, where hypotheses for long-term monthly revenue growth are brainstormed and prioritized.",
+    "keywords": [
+      "monthly",
+      "per-product",
+      "PM",
+      "asynchronous",
+      "four weeks",
+      "company",
+      "hypotheses",
+      "Tim",
+      "James"
+    ],
+    "source": "https://posthog.com/handbook/product/per-product-growth-reviews, https://posthog.com/handbook/growth/growth-engineering/growth-sessions",
+    "category": "comparison"
+  },
+  {
+    "question": "What is a 'product intent', and why does PostHog track it?",
+    "reference_answer": "A product intent is an event recording that an organization showed interest in a specific product, and when. It marks the top of that product's activation funnel. Without it, every signup would enter every product's funnel, giving a huge top of funnel, murky metrics and dismal activation rates. Intents are flexible (they can happen anywhere, any time) and stored in the database.",
+    "keywords": [
+      "intent",
+      "event",
+      "top of the funnel",
+      "activation",
+      "murky metrics",
+      "flexible",
+      "stored in the database"
+    ],
+    "source": "https://posthog.com/handbook/growth/growth-engineering/product-intents",
+    "category": "technical"
+  },
+  {
+    "question": "What's the three-stage structure of a per-product activation query?",
+    "reference_answer": "1) Upfunnel: the organization triggered a product intent. 2) Downfunnel: the organization met the activation criteria (qualifying events within a period, e.g. 14 days). 3) Retention/survived: the organization triggered a usage event 3 months after showing intent.",
+    "keywords": [
+      "product intent",
+      "upfunnel",
+      "activation criteria",
+      "14 days",
+      "downfunnel",
+      "3 months",
+      "retention"
+    ],
+    "source": "https://posthog.com/handbook/growth/growth-engineering/per-product-activation",
+    "category": "technical"
+  },
+  {
+    "question": "What is PostHog's revenue target for 2026, and what monthly growth rate does it require?",
+    "reference_answer": "$100 million ARR by the end of 2026. The 'future' page says it needs about 7% monthly revenue growth. The finance page says averaging 7.5% MoM hits $100m by end of 2026, and 5% MoM makes PostHog 'default alive' (profitable before running out of capital). A good answer notes the slight 7% vs 7.5% difference.",
+    "keywords": ["$100 million", "2026", "7%", "7.5%", "5%", "default alive"],
+    "source": "https://posthog.com/handbook/future, https://posthog.com/handbook/finance",
+    "category": "conflict-resolution"
+  },
+  {
+    "question": "When should a salesperson reach out to a self-serve customer who signed up without talking to sales?",
+    "reference_answer": "If they think the customer could pay more than $20k a year, they should introduce themselves and offer help. Such customers have often done their own research, so a demo may not be needed and a 30-minute discovery call may be better. Check Vitally first (linked from the 'Vitally account URL' field in Salesforce) for prior contact. Customers who work with sales retain better and cross-sell more.",
+    "keywords": [
+      "$20k",
+      "introduce",
+      "demo",
+      "30-minute",
+      "discovery",
+      "Vitally",
+      "Salesforce",
+      "retain better"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/product-led-sales",
+    "category": "scenario"
+  },
+  {
+    "question": "Can PostHog sell to a company based in Iran or North Korea?",
+    "reference_answer": "No. US sanctions ban PostHog from offering services at all to any company based in Cuba, Iran, North Korea or Syria. For companies in other listed territories (e.g. Russia, Belarus, Crimea, Venezuela), check the US Treasury's Sanctions Search, because specific companies may be sanctioned. PostHog has no discretion on sanctions.",
+    "keywords": [
+      "no",
+      "US sanctions",
+      "Cuba",
+      "Iran",
+      "North Korea",
+      "Syria",
+      "Sanctions Search",
+      "no discretion"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/who-we-do-business-with",
+    "category": "policy"
+  },
+  {
+    "question": "Apart from sanctions, when might PostHog refuse to do business with a customer?",
+    "reference_answer": "PostHog welcomes everyone who abides by the law, paid or free, except in very exceptional cases: the customer is doing something illegal or unlawful, or is encouraging violence or discriminating against legally protected groups.",
+    "keywords": [
+      "illegal",
+      "unlawful",
+      "violence",
+      "discriminating",
+      "legally protected groups"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/who-we-do-business-with",
+    "category": "policy"
+  },
+  {
+    "question": "Which customers are good candidates for paid professional services, and who must be consulted first?",
+    "reference_answer": "Good candidates have some mix of: ARR around $100k+ now or within 12 months (actual spend, not credit), a large company with complex needs, an explicit ask for paid implementation or training, an adopting team in person at one location, not yet set up with PostHog, willingness to give codebase access, and needing session replay, flags, AI observability or error tracking. Ping Ben and Simon first, since a forward deployed engineer may be sent and capacity is limited. Ongoing training isn't in scope.",
+    "keywords": [
+      "$100k",
+      "complex needs",
+      "explicitly asked",
+      "single location",
+      "codebase",
+      "Ben",
+      "Simon",
+      "forward deployed engineer"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/professional-services",
+    "category": "scenario"
+  },
+  {
+    "question": "How is customer health scored, and why aren't data volume changes included?",
+    "reference_answer": "Each paying or trialing account gets a health score of 0–10 in Customer Analytics, refreshed every 24 hours. It's a materialized view rebuilt daily, so historic trends aren't visible yet, and a 'Health score updated' date older than about a day means it's stale. Volume increases or decreases are left out on purpose, because spike alerts catch them and they need immediate action, not a health-score trend.",
+    "keywords": [
+      "0-10",
+      "24 hours",
+      "Customer Analytics",
+      "materialized view",
+      "stale",
+      "data volume",
+      "spike alerts"
+    ],
+    "source": "https://posthog.com/handbook/customer-success/health-tracking",
+    "category": "technical"
+  },
+  {
+    "question": "A CSM helped a customer cut their bill by 40%. Do they need to justify the revenue drop?",
+    "reference_answer": "No. CSMs aren't expected to justify revenue declines from cost optimization, because helping customers save money is a core principle (an overpaying customer is a churn risk who hasn't churned yet). They should add context: tag the account 'cost optimizing' in Customer Analytics and post a Slack message, so others can tell a customer we helped from one we're not engaged with. Accounts nobody looked after get a grace quarter.",
+    "keywords": [
+      "not expected to justify",
+      "save money",
+      "churn risk",
+      "cost optimizing",
+      "tag",
+      "Slack",
+      "grace quarter"
+    ],
+    "source": "https://posthog.com/handbook/customer-success/cost-optimization",
+    "category": "scenario"
+  },
+  {
+    "question": "How should a CSM handle a customer's feature request that is urgent because of churn risk?",
+    "reference_answer": "If the customer is at risk of churn or unhappy about the missing feature, raise it in the relevant team's Slack channel (usually #team-xyz) with the urgency and ARR, tagging the team lead. The CSM still owns the customer and may need to follow up. Don't create false urgency. Non-urgent requests are logged in the Feature requests tab of Customer Analytics and shared with teams before quarterly planning. PostHog won't build niche features for one big customer.",
+    "keywords": [
+      "churn",
+      "Slack channel",
+      "ARR",
+      "team lead",
+      "false urgency",
+      "Customer analytics",
+      "quarterly planning",
+      "single big customer"
+    ],
+    "source": "https://posthog.com/handbook/customer-success/feature-requests",
+    "category": "scenario"
+  },
+  {
+    "question": "Can a customer split payment for a discounted annual contract into quarterly installments?",
+    "reference_answer": "No. Discounted contracts need upfront payment. Quarterly or split payments aren't available because they hurt cash flow and add admin. If the full amount is over budget, the customer can stay on monthly billing or buy smaller credits sized to a lower but credible forecast. Extended terms beyond Net 30 reduce the discount by 2.5% per extra 15 days.",
+    "keywords": [
+      "upfront payment",
+      "quarterly",
+      "not available",
+      "cash flow",
+      "monthly billing",
+      "Net 30",
+      "-2.5%",
+      "15 days"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/contract-rules",
+    "category": "policy"
+  },
+  {
+    "question": "What's the extra discount for a monthly-to-annual conversion, and what's required to get it?",
+    "reference_answer": "A one-time +5% forecast discount for monthly-to-annual conversions and new agreements. It needs written confirmation from the customer's actual signatory of intent to sign by a specific, mutually agreed date. It's not an end-of-quarter discount, it's offered once per conversion cycle, and it isn't available while the customer can claim another partner-program credit grant (e.g. a renewed YC grant) during the term.",
+    "keywords": [
+      "+5%",
+      "one-time",
+      "written confirmation",
+      "signatory",
+      "mutually agreed date",
+      "not end-of-quarter",
+      "YC"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/contract-rules",
+    "category": "policy"
+  },
+  {
+    "question": "How can a support engineer tell whether a customer is using a reverse proxy?",
+    "reference_answer": "Check their api_host configuration. If it shows us.i.posthog or eu.i.posthog, they're not using a reverse proxy. To inspect configuration more broadly, open the site with ?__posthog_debug=true, or enable doctor in session replay and look for the 'posthog config' event.",
+    "keywords": [
+      "api_host",
+      "us.i.posthog",
+      "eu.i.posthog",
+      "reverse proxy",
+      "__posthog_debug=true",
+      "doctor",
+      "posthog config"
+    ],
+    "source": "https://posthog.com/handbook/support/troubleshooting-tips",
+    "category": "technical"
+  },
+  {
+    "question": "What SQL snippet breaks down events by anonymous versus identified users?",
+    "reference_answer": "IF(person.properties.$creator_event_uuid IS NOT NULL, 'Identified', 'Anonymous') AS user_type. For identify and person profile issues, it also helps to add distinct_id as a SQL expression column to see how it changes.",
+    "keywords": [
+      "$creator_event_uuid",
+      "IS NOT NULL",
+      "Identified",
+      "Anonymous",
+      "distinct_id"
+    ],
+    "source": "https://posthog.com/handbook/support/troubleshooting-tips",
+    "category": "technical"
+  },
+  {
+    "question": "What are the eligibility rules and credits for PostHog for Startups versus the YC deal?",
+    "reference_answer": "Startups: under 2 years old, under $5M raised, not acquired by or owned by an ineligible company, company email domain. It gets $50,000 for 12 months. YC: must be in YC (verified link), under $25m raised, company email domain. It gets $50k per year while eligible, plus Tim's WhatsApp, priority support and up to 4 welcome packs. Both are once per founder or org. From September 14, 2026, credits can't be used for AI tools (PostHog Desktop, Slack app, Replay Vision, PostHog AI, Inbox).",
+    "keywords": [
+      "<2 years",
+      "<$5M",
+      "$50,000",
+      "12 months",
+      "YC",
+      "<$25m",
+      "$50k per year",
+      "September 14, 2026",
+      "AI tools"
+    ],
+    "source": "https://posthog.com/handbook/marketing/startups",
+    "category": "comparison"
+  },
+  {
+    "question": "Can startup program credits be used to pay for PostHog AI?",
+    "reference_answer": "No, not from September 14, 2026. Neither Startup nor YC credits can be used for AI tools: PostHog Desktop, the PostHog Slack app, Replay Vision, PostHog AI and Inbox. Credits can be used for add-ons, but Startups credits can't cover the BAA in the Boost package (YC credits can).",
+    "keywords": [
+      "no",
+      "September 14, 2026",
+      "PostHog AI",
+      "Replay Vision",
+      "add-ons",
+      "BAA",
+      "Boost"
+    ],
+    "source": "https://posthog.com/handbook/marketing/startups",
+    "category": "temporal"
+  },
+  {
+    "question": "Who is allowed to talk to the press on PostHog's behalf?",
+    "reference_answer": "Only Joe, James, Tim or Charles. All press enquiries, including emails you receive personally, should go to press@posthog.com. PR is mostly reactive, except for occasional major releases like funding rounds, where PostHog prefers a single exclusive media partner (investors can help secure it).",
+    "keywords": [
+      "Joe",
+      "James",
+      "Tim",
+      "Charles",
+      "press@posthog.com",
+      "reactive",
+      "exclusive"
+    ],
+    "source": "https://posthog.com/handbook/marketing/press",
+    "category": "policy"
+  },
+  {
+    "question": "Why did PostHog pause its YouTube channel, and what did it learn?",
+    "reference_answer": "PostHog ran YouTube from November 2022 to July 2023. Videos got hundreds to thousands of views but didn't raise signups, traffic or mentions (e.g. the 'GitHub as CMS' video got 3,000 views in a week with no signup impact), and easy content ideas ran out. Learnings: less PostHog-specific videos did better, title and thumbnail matter more than content, YouTube growth compounds but needs years and hundreds of videos, and lighting matters most for quality.",
+    "keywords": [
+      "November 2022",
+      "July 2023",
+      "signups",
+      "3,000 views",
+      "low-hanging fruit",
+      "thumbnail",
+      "compounds",
+      "lighting"
+    ],
+    "source": "https://posthog.com/handbook/content/youtube",
+    "category": "temporal"
+  },
+  {
+    "question": "PostHog's social media page lists YouTube as a primary platform, but the YouTube page says it's paused. How do you reconcile this?",
+    "reference_answer": "The YouTube page says PostHog experimented with YouTube from Nov 2022 to Jul 2023 and paused creating and publishing, possibly to try again. The social media page lists X, LinkedIn and YouTube as primary platforms and says video beats graphics, which beats text. A good answer flags the mismatch: the YouTube page describes an earlier paused experiment, while the social page shows YouTube as a current priority platform.",
+    "keywords": [
+      "paused",
+      "2022",
+      "2023",
+      "primary platforms",
+      "X",
+      "LinkedIn",
+      "YouTube",
+      "video"
+    ],
+    "source": "https://posthog.com/handbook/content/youtube, https://posthog.com/handbook/content/social-media",
+    "category": "conflict-resolution"
+  },
+  {
+    "question": "How is AEO different from SEO according to PostHog?",
+    "reference_answer": "AEO is about PostHog appearing, accurately, when someone asks an LLM or coding agent a relevant question (e.g. 'what's a good session replay tool?'), with a link into the funnel. Unlike SEO, PostHog is much more in the dark: there's no prompt volume data, so it can't tell whether anyone asks the tracked questions, and there's no fixed ranking, because answers vary by model, phrasing and even run. The mechanics differ too, since answer engines don't just crawl, index and rank like Google.",
+    "keywords": [
+      "LLM",
+      "coding agent",
+      "accurately",
+      "no volume data",
+      "no fixed ranking",
+      "model",
+      "phrasing",
+      "crawler"
+    ],
+    "source": "https://posthog.com/handbook/content/aeo-guide",
+    "category": "comparison"
+  },
+  {
+    "question": "Does PostHog's style guide use American or British English, and what about dashes?",
+    "reference_answer": "American English for spelling, grammar, dates and times. But PostHog prefers the British-style en dash with spaces on both sides ( – ) over the American em dash with no spaces (—). Other rules include sentence case for titles and the Oxford comma. Vale flags em dashes.",
+    "keywords": [
+      "American English",
+      "en dash",
+      "spaces",
+      "em dash",
+      "sentence case",
+      "Oxford comma",
+      "Vale"
+    ],
+    "source": "https://posthog.com/handbook/content/posthog-style-guide, https://posthog.com/handbook/wizard-and-docs/vale",
+    "category": "multi-hop"
+  },
+  {
+    "question": "Who is responsible for PostHog's community, and is support part of community?",
+    "reference_answer": "The Builder Relations team drives the community channels and supports members. The Website team built the community platform and tools and reviews changes. Support is explicitly not part of community. It's handled by Customer Success, mainly via in-app support and dedicated Slack channels. All community spaces follow the code of conduct, which also applies to the PostHog team.",
+    "keywords": [
+      "Builder Relations",
+      "Website team",
+      "not",
+      "support",
+      "Customer Success",
+      "code of conduct"
+    ],
+    "source": "https://posthog.com/handbook/community",
+    "category": "disambiguation"
+  },
+  {
+    "question": "What is 'do more weird' NOT trying to achieve?",
+    "reference_answer": "It isn't trying to get people to sign up. It aims to build overall brand awareness with product engineers at high-growth companies. PostHog's competition for attention is the whole internet, not other B2B SaaS companies.",
+    "keywords": [
+      "not",
+      "sign up",
+      "awareness",
+      "product engineers",
+      "high growth",
+      "internet"
+    ],
+    "source": "https://posthog.com/handbook/company/do-more-weird",
+    "category": "false-premise"
+  },
+  {
+    "question": "What is PostHog's current total headcount and annual revenue as of this month?",
+    "reference_answer": "The handbook doesn't give a current headcount or current annual revenue. It mentions a $100M ARR target by end of 2026 and point-in-time figures like '23 countries', but no current totals. The system should say this isn't in the handbook and not guess.",
+    "keywords": ["not in the handbook", "$100M target", "no current figure"],
+    "source": "https://posthog.com/handbook/future, https://posthog.com/handbook/company/grown-ups",
+    "category": "unanswerable"
+  },
+  {
+    "question": "Does PostHog offer a 4-day work week?",
+    "reference_answer": "The handbook doesn't describe a 4-day work week. It describes unlimited, permissionless time off (minimum 25 days a year) and near-complete flexibility over working hours, and says PostHog doesn't offer part-time work. The system shouldn't claim a 4-day week exists.",
+    "keywords": [
+      "not described",
+      "unlimited time off",
+      "flexibility",
+      "no part time"
+    ],
+    "source": "https://posthog.com/handbook/people/time-off, https://posthog.com/handbook/people/side-gigs, https://posthog.com/handbook/company/grown-ups",
+    "category": "unanswerable"
+  },
+  {
+    "question": "Why does PostHog require employees to work from the San Francisco office three days a week?",
+    "reference_answer": "False premise. PostHog is 100% remote. Hogpatch in San Francisco is a free coworking space for current-batch YC founders, not an employee office requirement. Team members meet in person at yearly offsites and ad-hoc meetups.",
+    "keywords": [
+      "false premise",
+      "100% remote",
+      "Hogpatch",
+      "YC founders",
+      "offsites"
+    ],
+    "source": "https://posthog.com/handbook/company/culture, https://posthog.com/handbook/people/hogpatch, https://posthog.com/handbook/company/offsites",
+    "category": "false-premise"
+  },
+  {
+    "question": "What is the approval process for a PostHog employee's vacation request?",
+    "reference_answer": "There isn't one. Time off is permissionless: you don't need manager approval, and booking in the Time Off by Deel Slack app is auto-approved (except longer-term leave). You're expected to coordinate with your team. Managers aren't responsible for 'approving' days off.",
+    "keywords": [
+      "no approval",
+      "permissionless",
+      "auto approved",
+      "Time Off by Deel",
+      "coordinate",
+      "managers"
+    ],
+    "source": "https://posthog.com/handbook/people/time-off, https://posthog.com/handbook/company/management",
+    "category": "false-premise"
+  },
+  {
+    "question": "What is PostHog's dress code for customer meetings?",
+    "reference_answer": "The handbook doesn't specify a dress code for customer meetings. The system should say it isn't covered and not make one up.",
+    "keywords": ["not covered", "not in the handbook"],
+    "source": "",
+    "category": "out-of-scope"
+  },
+  {
+    "question": "What discount does PostHog give monthly customers who commit to 12 months of monthly billing?",
+    "reference_answer": "None. PostHog doesn't offer discounts to customers paying monthly, whatever their commitment. Discounts only apply to prepaid credit contracts that qualify for volume tiers (starting at $25k per contract year).",
+    "keywords": [
+      "no discounts",
+      "monthly",
+      "irrespective of commitment",
+      "volume",
+      "$25k"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/contract-rules",
+    "category": "false-premise"
+  },
+  {
+    "question": "Which ClickHouse version is PostHog's main cluster running?",
+    "reference_answer": "The handbook pages don't state a ClickHouse version for the main cluster. The Logs post-mortem notes the Logs cluster was built separately so it could use later database versions, but no specific version is given. The system should say it isn't specified.",
+    "keywords": ["not specified", "Logs cluster", "later database versions"],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/clusters, https://posthog.com/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss",
+    "category": "unanswerable"
+  }
+]

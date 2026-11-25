@@ -1,0 +1,166 @@
+[
+  {
+    "question": "Can I work from a WeWork or coworking space and expense it?",
+    "reference_answer": "Yes. Coworking, cafés or WeWork All Access are allowed under the expense policy, and the monthly User Limit covers it. Message Kendal to be added to the company WeWork account.",
+    "keywords": [
+      "WeWork All Access",
+      "co-working",
+      "expense policy",
+      "User Limit",
+      "Kendal"
+    ],
+    "source": "https://posthog.com/handbook/people/benefits, https://posthog.com/handbook/company/culture",
+    "category": "people-policy"
+  },
+  {
+    "question": "Was 'Dune' one of the BookHog books, and which book on PostHog's culture inspiration did BookHog read?",
+    "reference_answer": "Yes, Dune is on the BookHog list. BookHog also read 'No Rules Rules', the book that inspired PostHog's context-based expense policy and is listed among the books that influenced the company.",
+    "keywords": [
+      "Dune",
+      "No Rules Rules",
+      "expense policy",
+      "influenced"
+    ],
+    "source": "https://posthog.com/handbook/people/bookhog, https://posthog.com/handbook/people/spending-money, https://posthog.com/handbook/story",
+    "category": "multi-hop"
+  },
+  {
+    "question": "How does PostHog's internal #changelog Slack channel get populated?",
+    "reference_answer": "Agentic workflows scan merged PRs and feature flag changes in the posthog/posthog repo and summarize them into the channel. PRs still behind a feature flag are left out, based on the 'Release status' section of the PR template. The Wizard & Docs team owns the channel. Support team members are expected to join it.",
+    "keywords": [
+      "agentic workflows",
+      "merged PRs",
+      "feature flag",
+      "Release status",
+      "Wizard & Docs",
+      "Support"
+    ],
+    "source": "https://posthog.com/handbook/engineering/customer-comms, https://posthog.com/handbook/support/support-team",
+    "category": "multi-hop"
+  },
+  {
+    "question": "What core tools does the PostHog AI single-loop agent have, and how do products extend it?",
+    "reference_answer": "Core tools: search, read_data, read_taxonomy and todo_write (the team-structure page also mentions enable_mode). Products extend the agent through dynamically loadable agent modes (e.g. SQL, Analytics, CDP, custom product modes). Capabilities are exposed through the MCP server, which serves PostHog AI, Deep Research, Session Summaries, PostHog Desktop, the Wizard and tools like Claude Code.",
+    "keywords": [
+      "search",
+      "read_data",
+      "read_taxonomy",
+      "todo_write",
+      "modes",
+      "MCP server",
+      "Deep Research",
+      "Wizard"
+    ],
+    "source": "https://posthog.com/handbook/engineering/ai/architecture, https://posthog.com/handbook/engineering/ai/team-structure",
+    "category": "technical"
+  },
+  {
+    "question": "Per-product growth reviews vs growth sessions: how do they differ?",
+    "reference_answer": "Per-product growth reviews are monthly, PM-led and mostly async reviews of one product's metrics and anomalies. Growth sessions are company-level meetings every four weeks with Raquel, Tim, James and Charles, where hypotheses for long-term monthly revenue growth are brainstormed and prioritized.",
+    "keywords": [
+      "monthly",
+      "per-product",
+      "PM",
+      "asynchronous",
+      "four weeks",
+      "company",
+      "hypotheses",
+      "Tim",
+      "James"
+    ],
+    "source": "https://posthog.com/handbook/product/per-product-growth-reviews, https://posthog.com/handbook/growth/growth-engineering/growth-sessions",
+    "category": "comparison"
+  },
+  {
+    "question": "What is PostHog's revenue target for 2026, and what monthly growth rate does it require?",
+    "reference_answer": "$100 million ARR by the end of 2026. The 'future' page says it needs about 7% monthly revenue growth. The finance page says averaging 7.5% MoM hits $100m by end of 2026, and 5% MoM makes PostHog 'default alive' (profitable before running out of capital). A good answer notes the slight 7% vs 7.5% difference.",
+    "keywords": [
+      "$100 million",
+      "2026",
+      "7%",
+      "7.5%",
+      "5%",
+      "default alive"
+    ],
+    "source": "https://posthog.com/handbook/future, https://posthog.com/handbook/finance",
+    "category": "conflict-resolution"
+  },
+  {
+    "question": "When should a salesperson reach out to a self-serve customer who signed up without talking to sales?",
+    "reference_answer": "If they think the customer could pay more than $20k a year, they should introduce themselves and offer help. Such customers have often done their own research, so a demo may not be needed and a 30-minute discovery call may be better. Check Vitally first (linked from the 'Vitally account URL' field in Salesforce) for prior contact. Customers who work with sales retain better and cross-sell more.",
+    "keywords": [
+      "$20k",
+      "introduce",
+      "demo",
+      "30-minute",
+      "discovery",
+      "Vitally",
+      "Salesforce",
+      "retain better"
+    ],
+    "source": "https://posthog.com/handbook/growth/sales/product-led-sales",
+    "category": "scenario"
+  },
+  {
+    "question": "A CSM helped a customer cut their bill by 40%. Do they need to justify the revenue drop?",
+    "reference_answer": "No. CSMs aren't expected to justify revenue declines from cost optimization, because helping customers save money is a core principle (an overpaying customer is a churn risk who hasn't churned yet). They should add context: tag the account 'cost optimizing' in Customer Analytics and post a Slack message, so others can tell a customer we helped from one we're not engaged with. Accounts nobody looked after get a grace quarter.",
+    "keywords": [
+      "not expected to justify",
+      "save money",
+      "churn risk",
+      "cost optimizing",
+      "tag",
+      "Slack",
+      "grace quarter"
+    ],
+    "source": "https://posthog.com/handbook/customer-success/cost-optimization",
+    "category": "scenario"
+  },
+  {
+    "question": "What is PostHog's current total headcount and annual revenue as of this month?",
+    "reference_answer": "The handbook doesn't give a current headcount or current annual revenue. It mentions a $100M ARR target by end of 2026 and point-in-time figures like '23 countries', but no current totals. The system should say this isn't in the handbook and not guess.",
+    "keywords": [
+      "not in the handbook",
+      "$100M target",
+      "no current figure"
+    ],
+    "source": "https://posthog.com/handbook/future, https://posthog.com/handbook/company/grown-ups",
+    "category": "unanswerable"
+  },
+  {
+    "question": "Does PostHog offer a 4-day work week?",
+    "reference_answer": "The handbook doesn't describe a 4-day work week. It describes unlimited, permissionless time off (minimum 25 days a year) and near-complete flexibility over working hours, and says PostHog doesn't offer part-time work. The system shouldn't claim a 4-day week exists.",
+    "keywords": [
+      "not described",
+      "unlimited time off",
+      "flexibility",
+      "no part time"
+    ],
+    "source": "https://posthog.com/handbook/people/time-off, https://posthog.com/handbook/people/side-gigs, https://posthog.com/handbook/company/grown-ups",
+    "category": "unanswerable"
+  },
+  {
+    "question": "Why does PostHog require employees to work from the San Francisco office three days a week?",
+    "reference_answer": "False premise. PostHog is 100% remote. Hogpatch in San Francisco is a free coworking space for current-batch YC founders, not an employee office requirement. Team members meet in person at yearly offsites and ad-hoc meetups.",
+    "keywords": [
+      "false premise",
+      "100% remote",
+      "Hogpatch",
+      "YC founders",
+      "offsites"
+    ],
+    "source": "https://posthog.com/handbook/company/culture, https://posthog.com/handbook/people/hogpatch, https://posthog.com/handbook/company/offsites",
+    "category": "false-premise"
+  },
+  {
+    "question": "Which ClickHouse version is PostHog's main cluster running?",
+    "reference_answer": "The handbook pages don't state a ClickHouse version for the main cluster. The Logs post-mortem notes the Logs cluster was built separately so it could use later database versions, but no specific version is given. The system should say it isn't specified.",
+    "keywords": [
+      "not specified",
+      "Logs cluster",
+      "later database versions"
+    ],
+    "source": "https://posthog.com/handbook/engineering/clickhouse/clusters, https://posthog.com/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss",
+    "category": "unanswerable"
+  }
+]

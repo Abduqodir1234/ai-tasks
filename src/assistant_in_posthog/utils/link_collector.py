@@ -1,3 +1,4 @@
+import re
 import xml.etree.ElementTree as ET
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
@@ -6,6 +7,8 @@ from courlan import extract_links
 
 USER_AGENT = "Mozilla/5.0 (compatible; posthog-assistant-ingest/1.0)"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+# llms.txt lists pages as Markdown links: - [Title](https://site/page.md)
+LLMS_TXT_LINK = re.compile(r"\]\((https?://[^)\s]+)\)")
 
 
 def fetch_html(url, timeout=30):
@@ -56,3 +59,18 @@ def get_links_from_sitemap(sitemap_url, path_prefix=None, timeout=30):
         url for url in locs
         if path_prefix is None or urlparse(url).path.startswith(path_prefix)
     ]
+
+
+def get_links_from_llms_txt(llms_txt_url, path_prefix=None, timeout=30):
+    """
+    Return the page urls listed in an llms.txt file, sorted and de-duplicated.
+    Links to a page's .md version are returned as the page url, without ".md".
+    With path_prefix (e.g. "/docs/") only urls whose path starts with it
+    are returned.
+    """
+    text, _ = fetch_html(llms_txt_url, timeout)
+    urls = {url.removesuffix(".md") for url in LLMS_TXT_LINK.findall(text)}
+    return sorted(
+        url for url in urls
+        if path_prefix is None or urlparse(url).path.startswith(path_prefix)
+    )
