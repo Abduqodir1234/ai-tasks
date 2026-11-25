@@ -61,7 +61,7 @@ retriever = db.as_retriever()
 MAX_QUERY_VARIANTS = 8
 # gpt-oss can keep searching and never write an answer, so after this many
 # tool rounds it is asked to answer from the results it already has
-MAX_TOOL_ROUNDS = 10
+MAX_TOOL_ROUNDS = 5
 FORCE_ANSWER_MESSAGE = "Stop searching. Answer now using only the search results above; if they don't answer the question, say so."
 # gpt-oss sometimes replies without searching, or with neither text nor a tool call,
 # so it is nudged this many times; if it still hasn't searched, the search is run for it

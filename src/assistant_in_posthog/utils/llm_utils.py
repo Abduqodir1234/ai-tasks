@@ -43,9 +43,10 @@ def rerank_context(question: str, docs: list[Document], rerankLlm: BaseChatModel
 
     Chunks are numbered 1..n for the LLM (short numbers are easier for a small
     model than Chroma ids). Its answer is cleaned up: unknown and repeated ids
-    are dropped. Chunks it left out are dropped too, so fewer docs than given
-    can come back. If the call fails or no valid id is left, the original
-    order is returned.
+    are dropped, and chunks it left out are added after the ranked ones in
+    retriever order, so a short answer can't push the right chunk out of top_k.
+    If the call fails, no valid id is left, or the order is just counting up or
+    down (see isCountingOrder), the original order is returned.
     """
     if len(docs) < 2:
         return docs
@@ -70,10 +71,27 @@ def rerank_context(question: str, docs: list[Document], rerankLlm: BaseChatModel
     if not order:
         print("Rerank returned no valid ids, keeping retriever order")
         return docs
+    if isCountingOrder(order):
+        print(f"Rerank order {order} only counts up or down, keeping retriever order")
+        return docs
     skipped = [id for id in range(1, len(docs) + 1) if id not in order]
-    print(f"Rerank order: {order}" + (f", skipped: {skipped}" if skipped else ""))
+    print(f"Rerank order: {order}" + (f", skipped (kept last): {skipped}" if skipped else ""))
 
-    return [docs[id - 1] for id in order]
+    return [docs[id - 1] for id in order + skipped]
+
+
+# qwen3:8b sometimes writes the ids out in sequence, e.g. [12, 11, 10, ..., 1],
+# instead of ranking them; that order says nothing about relevance
+MIN_COUNTING_LENGTH = 5
+COUNTING_SHARE = 0.8
+
+
+def isCountingOrder(order: list[int]) -> bool:
+    """True when at least COUNTING_SHARE of neighbouring ids in order differ by exactly 1."""
+    if len(order) < MIN_COUNTING_LENGTH:
+        return False
+    steps = sum(abs(b - a) == 1 for a, b in zip(order, order[1:]))
+    return steps / (len(order) - 1) >= COUNTING_SHARE
 
 
 def improve_current_prompt(prompt: str, history: list[GradioChatHistory], llm: BaseChatModel) -> str:
