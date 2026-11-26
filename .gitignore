@@ -23,3 +23,6 @@ dist/
 
 # Vector store (regenerate with ingest.py)
 src/vector_db/
+
+# Eval runs (regenerate with evaluation/evaluator.py)
+src/assistant_in_posthog/evaluation/results/
