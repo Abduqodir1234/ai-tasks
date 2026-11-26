@@ -1,0 +1,24 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "acompletion",
+    "airsoftairway",
+    "Asaxiy",
+    "BAAI",
+    "bookhog",
+    "DNDEBUG",
+    "gemma",
+    "litellm",
+    "llms",
+    "nodename",
+    "Ollama",
+    "posthog",
+    "Qwen",
+    "rerank",
+    "reranker",
+    "reranking",
+    "servname"
+  ],
+  "ignorePaths": [".venv", "uv.lock", "src/vector_db", "src/assistant_in_posthog/evaluation/results"]
+}
