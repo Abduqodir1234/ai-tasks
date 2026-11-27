@@ -1,4 +1,5 @@
 import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, TypedDict
 
@@ -79,13 +80,17 @@ def search_posthog(queries: list[str], question: str, top_k: int = 5) -> tuple[s
     print(f"Searching for queries: {queries} with top_k={top_k}")
     results = []
     seen = set()
-    for query in queries[:MAX_QUERY_VARIANTS]:
+    queries = queries[:MAX_QUERY_VARIANTS]
+    # The variants are searched at once; map keeps query order, so the dedup below gives the same results
+    with ThreadPoolExecutor(max_workers=max(len(queries), 1)) as executor:
         # No section filter: picking docs or handbook up front sent handbook questions to the docs
-        for doc in fetch_related_context(db, query, top_k=top_k):
-            key = (doc.metadata.get("source"), doc.page_content)
-            if key not in seen:
-                seen.add(key)
-                results.append(doc)
+        perQuery = executor.map(lambda query: fetch_related_context(db, query, top_k=top_k), queries)
+        for docs in perQuery:
+            for doc in docs:
+                key = (doc.metadata.get("source"), doc.page_content)
+                if key not in seen:
+                    seen.add(key)
+                    results.append(doc)
 
     ranked_results = rerank_context(question, results, reranker)[:top_k]
     text = "\n\n".join(
